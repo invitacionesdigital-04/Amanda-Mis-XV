@@ -1,0 +1,3641 @@
+/* Variables CSS */
+:root {
+    --background: 0 0% 96%;
+    --foreground: 30 15% 18%;
+    --primary: 0 60% 38%;
+    --primary-foreground: 0 0% 96%;
+    --gold: 0 58% 42%;
+    --gold-light: 0 45% 90%;
+    --gold-dark: 0 62% 34%;
+    --brown: 0 68% 28%;
+    --brown-light: 0 40% 93%;
+    --brown-dark: 0 72% 20%;
+    --cream: 0 0% 98%;
+    --warm-white: 33 26% 93%;
+    --shadow-elegant: 0 10px 30px -10px hsl(0 60% 38% / 0.28);
+    --shadow-gold: 0 4px 20px hsl(0 58% 42% / 0.22);
+    /* Nuevo tono para laterales tipo papel (blanco piedra) */
+    --paper-side: 0 0% 97%;
+}
+
+/* Contenedor centrado tipo tarjeta */
+.site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 0.75rem;
+    background: transparent; /* fondo y sombra ahora los maneja page-shell */
+    box-shadow: none;
+}
+
+/* Contenedor envolvente para sombra continua a lo largo de toda la página */
+.page-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Animaciones de iconos modernos */
+.animated-heart {
+    transition: transform 0.3s ease;
+}
+
+.animated-heart:hover {
+    transform: scale(1.1);
+}
+
+.animated-heart .heart-path {
+    filter: drop-shadow(0 0 10px rgba(43, 143, 191, 0.6));
+}
+
+.animated-celebration {
+    transition: transform 0.3s ease;
+}
+
+.animated-celebration:hover {
+    transform: scale(1.1);
+}
+
+.animated-camera {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.animated-camera:hover {
+    transform: scale(1.1);
+}
+
+.animated-camera:active .flash-effect {
+    animation: cameraFlash 0.3s ease-in-out;
+}
+
+@keyframes cameraFlash {
+    0% { opacity: 0; r: 0; }
+    50% { opacity: 0.8; r: 12; }
+    100% { opacity: 0; r: 0; }
+}
+
+.animated-music {
+    transition: transform 0.3s ease;
+}
+
+.animated-music:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.animated-dresscode {
+    transition: transform 0.3s ease;
+}
+
+.animated-dresscode:hover {
+    transform: scale(1.1);
+}
+
+.animated-clipboard {
+    transition: transform 0.3s ease;
+}
+
+.animated-clipboard:hover {
+    transform: scale(1.1);
+}
+
+.animated-gift {
+    transition: transform 0.3s ease;
+}
+
+.animated-gift:hover {
+    transform: scale(1.1);
+}
+
+.animated-gift:hover .gift-lid {
+    animation: giftOpen 0.5s ease-in-out;
+}
+
+@keyframes giftOpen {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px) rotateX(10deg); }
+    100% { transform: translateY(0); }
+}
+
+.animated-whatsapp {
+    transition: transform 0.3s ease;
+}
+
+.animated-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+.animated-volume {
+    transition: transform 0.3s ease;
+}
+
+.animated-volume:hover {
+    transform: scale(1.1);
+}
+
+/* Efectos globales para iconos */
+.event-icon, .party-icon, .gift-icon, .whatsapp-icon, .camera-icon, .modal-icon {
+    overflow: visible;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.1));
+}
+
+/* Mejoras de rendimiento */
+.animated-heart svg,
+.animated-celebration svg,
+.animated-camera svg,
+.animated-music svg,
+.animated-dresscode svg,
+.animated-clipboard svg,
+.animated-gift svg,
+.animated-whatsapp svg,
+.animated-volume svg {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: hsl(var(--cream)); /* igual que el fondo inferior */
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+}
+
+/* Tipografía */
+.names {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Modal de Bienvenida */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--shadow-elegant);
+    border: 2px solid hsl(var(--gold) / 0.2);
+}
+
+/* En el modal de bienvenida, ocultar el recuadro y dejar solo el texto sobre el fondo borroso */
+.modal-overlay .modal-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    max-width: 860px;
+    width: min(92vw, 860px);
+    padding: clamp(2rem, 5vw, 3rem);
+}
+
+/* Bienvenida estilo hero de pantalla completa */
+.welcome-hero {
+    position: relative;
+    max-width: 860px;
+    width: min(92vw, 860px);
+    padding: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    color: hsl(var(--foreground));
+    background: transparent;
+    border: none;
+}
+
+/* Watermark de nombres en script detrás del contenido */
+.script-names {
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.75rem, 12vw, 8rem);
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    text-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    z-index: 0;
+}
+
+.welcome-date,
+.welcome-heading,
+.welcome-subtitle,
+.modal-buttons { position: relative; z-index: 1; }
+
+/* Ocultar marca de agua "Fede & Lore" del fondo en el modal */
+.modal-overlay .script-names { display: none; }
+
+.modal-overlay .welcome-hero::before {
+    content: "";
+    position: absolute;
+    inset: -40vh -10vw -40vh -10vw;
+    background-image: url('foto0.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    z-index: -1;
+    filter: blur(15px);
+}
+
+.welcome-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: hsl(var(--brown));
+    font-weight: 700;
+    margin: 0 auto 0.75rem;
+    max-width: 30ch;
+    white-space: normal;
+    word-break: normal;
+    text-wrap: balance;
+}
+
+/* Unificar tamaño dentro del título del modal */
+.welcome-heading .names,
+.welcome-heading .ampersand {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+}
+
+/* Afinar el & perla sin desalinear el texto */
+.welcome-heading .ampersand {
+    color: hsl(var(--gold));
+    padding: 0 0.15ch;
+}
+
+.welcome-date {
+    font-size: 0.95rem;
+    color: hsl(var(--foreground) / 0.7);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.welcome-subtitle {
+    color: hsl(var(--foreground) / 0.75);
+    margin-bottom: 1.25rem;
+}
+
+/* Sección: Saludo personalizado por invitado / familia (vía parámetro en la URL) */
+.guest-section {
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid hsl(var(--gold) / 0.25);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+    max-width: none;
+    margin: 1.5rem auto 0;
+}
+
+.guest-badge {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #fff;
+    background: hsl(var(--brown-dark));
+}
+
+.guest-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: hsl(var(--brown));
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+}
+
+.guest-subtitle {
+    color: hsl(var(--gold-dark));
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.guest-greeting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 24rem;
+    margin: 0 auto;
+}
+
+.guest-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    display: inline-flex;
+    width: auto;
+    color: hsl(var(--foreground));
+}
+
+/* Colores intercalados (fondo), tomados de la misma paleta perla/marrón del sitio */
+.guest-name.color-1 { background: hsl(var(--brown) / 0.1); }
+.guest-name.color-2 { background: hsl(var(--gold-dark) / 0.12); }
+.guest-name.color-3 { background: hsl(var(--brown-dark) / 0.1); }
+.guest-name.color-4 { background: hsl(var(--gold) / 0.14); }
+
+.guest-closing {
+    margin-top: 1.5rem;
+    color: hsl(var(--foreground) / 0.7);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    .guest-section { padding: 2rem 1rem; }
+    .guest-title { font-size: 2.4rem; }
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center; /* evita que los botones se estiren */
+}
+
+@media (max-width: 640px) {
+    .modal-buttons { flex-direction: column; align-items: center; }
+    .modal-buttons .btn-wedding { width: auto; align-self: center; }
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.modal-names {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.modal-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 2rem;
+}
+
+.modal-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+}
+
+
+
+.btn-outline {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--brown) / 0.3);
+    background: transparent;
+    color: hsl(var(--brown));
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-outline:hover {
+    background: hsl(var(--brown) / 0.1);
+    border-color: hsl(var(--brown));
+}
+
+/* Reproductor de música */
+.music-player {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.music-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--brown)), hsl(var(--gold)));
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-button:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Hero Section dividida 50/50 */
+.hero-wrapper {
+    position: relative;
+    z-index: 0;
+    padding: 0;
+}
+
+/* Para centrar la grilla de portada igual que el resto */
+.hero-container {
+    max-width: 1100px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 80vh; /* actualizado a 80vh */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none; /* la sombra viene del contenedor padre */
+    background: transparent; /* sin fondo para igualar el blanco */
+}
+
+/* Lado izquierdo: imagen fija con efecto scroll (parallax) */
+.hero-left {
+    position: relative;
+    display: block;
+    min-height: 60vh;
+    overflow: hidden;
+}
+
+.hero-left-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('foto0.jpg');
+    background-size: cover;
+    background-position: center 25%;
+    background-repeat: no-repeat;
+    transform: translateY(0);
+    will-change: transform;
+}
+
+/* Portada única (un solo panel a todo el ancho, sin lado derecho) */
+.hero-split--single {
+    grid-template-columns: 1fr;
+}
+
+/* Versículo debajo del conteo regresivo, misma sección: solo texto rojo vino, sin contorno */
+.hero-quote-card {
+    width: min(88%, 640px);
+    margin: 2.5rem auto 0;
+    text-align: center;
+}
+
+.hero-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-size: clamp(0.95rem, 2.6vw, 1.35rem);
+    line-height: 1.5;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 0.75rem;
+}
+
+.hero-quote-ref {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+    color: hsl(var(--brown-dark));
+}
+
+@media (max-width: 480px) {
+    .hero-quote-card { width: 92%; }
+}
+
+/* Image container for left hero image */
+.img-container {
+    width: 90%;
+    max-width: 600px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Lado derecho: sin efecto, solo imagen estática */
+.hero-right {
+    position: relative;
+    overflow: hidden;
+    background: hsl(var(--paper-side)); /* tono papel para rellenar sin dejar hueco visible */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+/* El hero-left usa siempre background; en móvil cambiamos el attachment */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+
+.hero-text {
+    max-width: 32rem;
+}
+
+.date {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.names {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.ampersand {
+    color: hsl(var(--gold));
+}
+
+.quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.scroll-indicator {
+    animation: bounce 2s infinite;
+}
+
+.scroll-mouse {
+    width: 1.5rem;
+    height: 2.5rem;
+    border: 2px solid white;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.scroll-wheel {
+    width: 0.25rem;
+    height: 0.75rem;
+    background: white;
+    border-radius: 0.125rem;
+    margin-top: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 1;
+    /* Ya no empuja 100vh completos porque la portada es 60vh */
+    margin-top: 0;
+    background: hsl(var(--cream));
+}
+
+/* Sections */
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section {
+    padding: 4rem 1rem;
+}
+
+.gallery-section,
+.gifts-section {
+    background-color: hsl(var(--warm-white));
+}
+
+/* Alternancia de tonos: cada sección alterna blanco puro / blanco cálido,
+   para que la división entre secciones se note por el color de fondo
+   (además de la sombra), no por la línea decorativa. */
+.countdown-section {
+    background-color: hsl(var(--warm-white));
+}
+
+.events-section,
+.party-section,
+.rsvp-section {
+    background-color: #ffffff;
+}
+
+/* Línea de sombra en la costura: da la sensación de que la sección
+   está "por debajo" de las secciones vecinas (efecto de capas).
+   Aplicar esta clase a cualquier <section> para replicar el efecto. */
+.section-shadow-seam {
+    position: relative;
+    box-shadow:
+        inset 0 10px 18px -14px rgba(0, 0, 0, 0.22),
+        inset 0 -10px 18px -14px rgba(0, 0, 0, 0.22);
+}
+
+/* Variante solo arriba o solo abajo, por si no querés el efecto en ambos bordes */
+.section-shadow-seam-top {
+    box-shadow: inset 0 8px 16px -14px rgba(0, 0, 0, 0.16);
+}
+
+.section-shadow-seam-bottom {
+    box-shadow: inset 0 -8px 16px -14px rgba(0, 0, 0, 0.16);
+}
+
+/* Línea divisoria decorativa: trazo curvo fino que se desvanece en los
+   extremos + puntitos degradados, repetida horizontalmente.
+   Se usa SOLO en gallery-section y gifts-section, una vez arriba y una
+   vez abajo, pegada al borde de la sección (no al centro), separada
+   del contenido/texto por un margen generoso. La división real entre
+   secciones la dan la sombra (.section-shadow-seam) y el cambio de
+   tono de fondo, que ocurren en la costura, sin la línea. */
+.deco-divider {
+    width: 100%;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='190' height='20' viewBox='0 0 190 20'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='150' y2='0' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23A92D2D' stop-opacity='0'/%3E%3Cstop offset='25%25' stop-color='%23A92D2D' stop-opacity='0.85'/%3E%3Cstop offset='75%25' stop-color='%23A92D2D' stop-opacity='0.85'/%3E%3Cstop offset='100%25' stop-color='%23A92D2D' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M0,10 Q75,5 150,10' stroke='url(%23g)' stroke-width='0.9' fill='none'/%3E%3Ccircle cx='159' cy='9.6' r='0.7' fill='%23A92D2D' opacity='0.75'/%3E%3Ccircle cx='164' cy='9.3' r='1.3' fill='%23A92D2D' opacity='0.85'/%3E%3Ccircle cx='170' cy='9.8' r='0.6' fill='%23A92D2D' opacity='0.6'/%3E%3C/svg%3E");
+    background-repeat: round no-repeat;
+    background-position: center;
+    opacity: 0.7;
+}
+
+/* Pegada al borde superior de la sección, empuja el título/texto hacia abajo */
+.deco-divider--top {
+    margin-top: -2.25rem;
+    margin-bottom: 2.25rem;
+}
+
+/* Pegada al borde inferior de la sección, con espacio respecto al contenido de arriba */
+.deco-divider--bottom {
+    margin-top: 2.25rem;
+    margin-bottom: -2.25rem;
+}
+
+/* Countdown */
+.countdown-section {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    flex-wrap: nowrap; /* forzar una sola línea */
+}
+
+/* Ajuste responsivo para que quepa siempre en una línea */
+.countdown-section {
+	padding: 1.5rem 0.5rem;
+}
+
+.countdown-item { min-width: 0; }
+/* Countdown typography: more elegant and smooth */
+.countdown-number {
+	font-family: 'Playfair Display', serif;
+	font-weight: 500;
+	font-variant-numeric: lining-nums oldstyle-nums;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	color: hsl(var(--foreground));
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.countdown-label {
+	font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+	color: hsl(var(--brown));
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	opacity: 0.9;
+}
+
+.countdown-separator { color: hsl(var(--brown-light)); }
+
+/* Evitar ruptura en móviles muy pequeños */
+@media (max-width: 480px) {
+	.countdown-container { gap: 0.5rem; }
+}
+
+/* Remove strict lord-icon sizing to allow custom sizes */
+/* .event-icon lord-icon,
+.camera-icon lord-icon,
+.gift-icon lord-icon,
+.party-icon lord-icon {
+	width: 110px !important;
+	height: 110px !important;
+} */
+
+.event-icon,
+.camera-icon,
+.gift-icon,
+.party-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Enlarge event icon circle slightly for balance */
+.event-icon {
+	width: 7rem;
+	height: 7rem;
+	margin: 0 auto 1.25rem;
+	padding: 0.5rem;
+	border-radius: 50%;
+	background-color: hsl(var(--gold) / 0.1);
+	border: 2px solid hsl(var(--gold));
+	box-shadow: var(--shadow-elegant);
+}
+
+/* Corbata animada (dress code) */
+.tie-icon {
+	width: 110px;
+	height: 110px;
+	animation: tieFloat 3s ease-in-out infinite;
+}
+
+@keyframes tieFloat {
+	0% { transform: translateY(0) rotate(0deg); }
+	50% { transform: translateY(-4px) rotate(1deg); }
+	100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Events */
+.events-container {
+    max-width: 96rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 480px));
+    justify-content: center;
+    gap: 3rem;
+}
+
+.event-card {
+    text-align: center;
+}
+
+.event-icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+.celebration-icon {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.glass {
+    width: 1.5rem;
+    height: 2rem;
+    background-color: hsl(var(--gold));
+    border-radius: 0.125rem;
+}
+
+.event-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: hsl(var(--brown));
+    margin-bottom: 1.5rem;
+}
+
+.event-details {
+    margin-bottom: 1.5rem;
+}
+
+.event-details h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--brown-dark));
+    margin-bottom: 0.5rem;
+}
+
+.event-details p {
+    color: hsl(var(--foreground) / 0.7);
+}
+
+.event-address {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-wedding {
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    background: linear-gradient(135deg, hsl(var(--gold-dark)), hsl(var(--gold)));
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-wedding:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-gold);
+}
+
+/* Gallery */
+.gallery-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-subtitle {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 3rem;
+}
+
+.camera-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto 1.75rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+/* Carrusel */
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-elegant);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border: 1px solid hsl(var(--gold) / 0.15);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Marco que permite que la mayoría de cada foto encaje sin recortes forzados */
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: hsl(var(--brown));
+    box-shadow: var(--shadow-elegant);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-counter {
+    text-align: center;
+    color: hsl(var(--foreground) / 0.7);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Party */
+.party-container {
+    max-width: 96rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.party-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.party-card {
+    padding: 2rem;
+    border: 2px solid hsl(var(--gold) / 0.2);
+    border-radius: 0.5rem;
+    background-color: hsl(var(--warm-white));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.party-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.party-icon {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 1.5rem;
+    padding: 0.75rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-pulse 2s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.party-icon .tie-icon,
+.party-icon lord-icon,
+.party-icon svg {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+}
+
+.party-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--brown));
+    margin-bottom: 1rem;
+}
+
+.party-card p {
+    color: hsl(var(--foreground) / 0.7);
+    margin-bottom: 1.5rem;
+}
+
+/* Gifts */
+.gifts-container,
+.rsvp-container {
+    max-width: 32rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.gift-icon,
+.whatsapp-icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 2rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--gold) / 0.1);
+    border: 2px solid hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--gold));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+.whatsapp-icon {
+    animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+/* RSVP */
+.rsvp-text {
+    margin-bottom: 1.75rem;
+}
+
+.rsvp-container .btn-wedding {
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+.footer {
+    background-color: hsl(var(--brown));
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.footer-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.footer-date {
+    color: #000000;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background: white;
+    border: 1px solid hsl(var(--gold));
+    border-radius: 0.5rem;
+    padding: 1rem;
+    box-shadow: var(--shadow-elegant);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    max-width: 300px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animations */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gentle-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes flip-in {
+    0% { transform: rotateY(180deg); opacity: 0; }
+    100% { transform: rotateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .hero-split { grid-template-columns: 1fr; height: auto; }
+    .hero-left { height: 60vh; min-height: 320px; }
+    .hero-right { height: auto; background: hsl(var(--paper-side)); }
+    .hero-right img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+}
+
+@media (max-width: 768px) {
+    .names {
+        font-size: 3rem;
+    }
+    /* En móvil, eliminar laterales y usar fondo uniforme */
+    body { 
+        background-image: none; 
+        background-color: hsl(var(--warm-white)); 
+    }
+    /* El contenedor ocupa el 100% en móvil, sin borde/sombra */
+    .site-container { padding: 0; max-width: none; width: 100%; }
+    .page-shell { box-shadow: none; max-width: none; width: 100%; border: none; border-radius: 0; }
+    .hero-container { max-width: none; }
+    .hero-split { border-radius: 0; }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    .countdown-number {
+        font-size: 3rem;
+    }
+    .countdown-container {
+        gap: 1.5rem;
+    }
+    .events-container {
+        grid-template-columns: 1fr;
+        gap: 4.5rem;
+    }
+    .party-grid {
+        grid-template-columns: 1fr;
+    }
+    .carousel-item {
+        height: 400px;
+    }
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .names {
+        font-size: 2.5rem;
+    }
+    .quote {
+        font-size: 1rem;
+    }
+    .countdown-number {
+        font-size: 2.5rem;
+    }
+    .carousel-item {
+        height: 350px;
+    }
+    .modal-content {
+        padding: 1.5rem;
+    }
+    .modal-names {
+        font-size: 1.5rem;
+    }
+}
+
+/* Left side custom hero snippet */
+.hero {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.hero img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	will-change: transform;
+	transition: transform 0.1s linear;
+}
+
+.texto {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: white;
+	padding: 0 1rem;
+}
+
+.texto .fecha {
+	font-size: 1.25rem;
+	margin-bottom: 1rem;
+}
+
+.texto h1 {
+	font-family: 'Great Vibes', cursive;
+	font-size: 4rem;
+	font-weight: 400;
+	margin: 0.5rem 0 1rem;
+}
+
+.texto .frase {
+	font-style: italic;
+	font-size: 1.1rem;
+	line-height: 1.5;
+}
+
+/* (Duplicado de .camera-icon eliminado: la regla vigente está más arriba) */
+
+/* Mobile-specific hero heights */
+@media (max-width: 768px) {
+	.hero-split { height: auto; }
+	.hero { height: 55vh; }
+	.hero-left {
+		display: block;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		min-height: 420px;
+	}
+	.hero-right { height: auto; background: hsl(var(--paper-side)); }
+	.hero-right img { width: 100%; height: auto; object-fit: contain; object-position: center; display: block; }
+    /* Desactivar attachment fijo en móvil por compatibilidad/performance */
+    .hero-left { background-attachment: scroll !important; }
+}
+
+/* Desktop-specific: (parallax por capa, ya no usamos background-attachment) */
+
+/* ==========================================================
+   REDISEÑO VISUAL — ESTILO MAR PROFUNDO / XV AÑOS
+   Mantiene la lógica y las funciones existentes.
+   ========================================================== */
+:root {
+    --background: 200 55% 96%;
+    --foreground: 207 70% 20%;
+    --primary: 207 70% 21%;
+    --primary-foreground: 0 0% 100%;
+    --gold: 200 60% 52%;
+    --gold-light: 200 55% 90%;
+    --gold-dark: 207 70% 21%;
+    --brown: 207 70% 21%;
+    --brown-light: 200 45% 82%;
+    --brown-dark: 210 75% 15%;
+    --cream: 200 55% 96%;
+    --warm-white: 0 0% 100%;
+    --paper-side: 200 55% 96%;
+    --shadow-elegant: 0 8px 24px rgba(14, 58, 92, 0.14);
+    --shadow-gold: 0 5px 16px rgba(14, 58, 92, 0.18);
+}
+
+html, body {
+    background: #F1F8FB;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    color: #0E3A5C;
+}
+
+/* Columna central como la referencia */
+.site-container,
+.page-shell,
+.hero-container {
+    max-width: 730px;
+}
+
+.page-shell {
+    background: #ffffff;
+    box-shadow: 0 8px 26px rgba(14, 58, 92, 0.13);
+}
+
+.content {
+    background: #ffffff;
+}
+
+/* ---------- Portada ---------- */
+.hero-wrapper {
+    max-width: 730px;
+    margin: 0 auto;
+    background: #DCEFF6;
+}
+
+.hero-split {
+    height: 535px;
+    border-radius: 0;
+    overflow: visible;
+    background: #DCEFF6;
+}
+
+.hero-left {
+    min-height: 535px;
+    overflow: visible;
+    position: relative;
+    isolation: isolate;
+}
+
+.hero-left-bg {
+    inset: 0;
+    background-position: center center;
+}
+
+.hero-overlay {
+    background: rgba(9, 40, 66, 0.30);
+    z-index: 1;
+}
+
+/* Flores arriba y abajo de la portada */
+.hero-left::before,
+.hero-left::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 78px;
+    background-image: url('floral-divider.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.hero-left::before { top: -1px; }
+.hero-left::after { bottom: -1px; transform: rotate(180deg); }
+
+/* Texto de portada de la referencia */
+.welcome-hero {
+    color: #0E3A5C;
+}
+
+.modal-overlay {
+    background: rgba(220, 239, 246, 0.90);
+}
+
+.modal-overlay .welcome-hero::before {
+    opacity: 0.25;
+    filter: blur(18px);
+}
+
+.welcome-date {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    margin-bottom: 0.7rem;
+}
+
+.welcome-heading {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: clamp(2.7rem, 6vw, 3.8rem);
+    font-weight: 400;
+    letter-spacing: 0;
+    border-top: 1px solid rgba(255,255,255,.78);
+    border-bottom: 1px solid rgba(255,255,255,.78);
+    padding: 0.2rem 1rem 0.35rem;
+    max-width: 500px;
+}
+
+.welcome-heading .names,
+.welcome-heading .ampersand {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.welcome-cover-message {
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    max-width: 500px;
+    margin: 2rem auto 0.7rem;
+}
+
+.welcome-subtitle {
+    color: rgba(255,255,255,.85);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.82rem;
+    margin-bottom: 1.15rem;
+}
+
+/* Botones estilo referencia */
+.btn-wedding {
+    padding: 0.62rem 1.35rem;
+    border-radius: 6px;
+    border: none;
+    background: #0E3A5C !important;
+    color: #ffffff;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    box-shadow: none;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.btn-wedding:hover {
+    transform: translateY(-1px);
+    background: #164B73 !important;
+    box-shadow: 0 5px 12px rgba(14, 58, 92,.16);
+}
+
+.modal-buttons .btn-wedding {
+    min-width: 160px;
+}
+
+/* ---------- Secciones ---------- */
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section,
+.guest-section {
+    position: relative;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.countdown-section,
+.events-section,
+.party-section,
+.rsvp-section {
+    background: #DCEFF6;
+}
+
+.gallery-section,
+.gifts-section,
+.guest-section {
+    background: #ffffff;
+}
+
+.countdown-section,
+.events-section,
+.gallery-section,
+.party-section,
+.gifts-section,
+.rsvp-section {
+    padding: 4.4rem 1.1rem 4.2rem;
+}
+
+/* Flor entre cada sección, usando el PNG entregado */
+.guest-section::before,
+.events-section::before,
+.gallery-section::before,
+.party-section::before,
+.gifts-section::before,
+.rsvp-section::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -43px;
+    width: 100%;
+    height: 86px;
+    background-image: url('floral-divider.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Evita que el borde viejo genere otra división visual */
+.section-shadow-seam {
+    box-shadow: none;
+}
+
+.deco-divider {
+    display: none;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 2.55rem);
+    line-height: 1.15;
+    font-weight: 400;
+    color: #0E3A5C;
+    margin-bottom: .55rem;
+}
+
+.section-subtitle {
+    font-family: 'Playfair Display', serif;
+    color: #4A7FA6;
+    font-size: .82rem;
+    line-height: 1.45;
+    margin: 0 auto 2rem;
+}
+
+/* ---------- Countdown ---------- */
+.countdown-section {
+    padding-top: 3.6rem;
+    padding-bottom: 3.7rem;
+}
+
+.countdown-container {
+    gap: .7rem;
+    max-width: 390px;
+}
+
+.countdown-number {
+    font-family: 'Playfair Display', serif;
+    color: #0E3A5C;
+    font-size: clamp(2rem, 5vw, 2.45rem);
+    font-weight: 400;
+    margin-bottom: .25rem;
+}
+
+.countdown-label {
+    font-family: 'Playfair Display', serif;
+    color: #1F5E8A;
+    font-size: .68rem;
+    letter-spacing: .05em;
+    text-transform: lowercase;
+}
+
+.countdown-separator {
+    color: #4A7FA6;
+    font-size: 1.4rem;
+    align-self: center;
+}
+
+.hero-quote-card {
+    width: min(88%, 530px);
+    margin: 1.3rem auto 0;
+}
+
+.hero-quote-text,
+.hero-quote-ref {
+    font-family: 'Playfair Display', serif;
+    color: #1F5E8A;
+}
+
+.hero-quote-text {
+    font-size: .8rem;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1.45;
+}
+
+.hero-quote-ref {
+    font-size: .72rem;
+    font-weight: 400;
+    letter-spacing: .04em;
+    text-transform: none;
+}
+
+/* ---------- Ceremonia: tarjeta como "Celebración" de referencia ---------- */
+.events-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.event-card {
+    width: min(100%, 320px);
+    padding: 2rem 1.55rem;
+    background: #ffffff;
+    border: 1px solid #8CCBE3;
+    border-radius: 11px;
+    box-shadow: none;
+}
+
+.events-section .event-icon {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto .7rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.events-section .event-icon lord-icon {
+    width: 38px !important;
+    height: 38px !important;
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    color: #0E3A5C;
+    font-size: 1.65rem;
+    font-weight: 400;
+    margin-bottom: 1.2rem;
+}
+
+.event-details {
+    margin-bottom: 1.1rem;
+}
+
+.event-details h4 {
+    font-family: 'Playfair Display', serif;
+    color: #5FB4D6;
+    font-size: .95rem;
+    font-weight: 400;
+    margin-bottom: .3rem;
+}
+
+.event-details p {
+    font-family: 'Playfair Display', serif;
+    color: #3A6F96;
+    font-size: .72rem;
+    line-height: 1.4;
+}
+
+.event-address {
+    font-size: .68rem !important;
+    margin-top: .15rem;
+}
+
+/* ---------- Galería / carrusel ---------- */
+.gallery-container {
+    max-width: 100%;
+}
+
+.camera-icon {
+    width: 3rem;
+    height: 3rem;
+    margin: .3rem auto 1.4rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.gallery-section .camera-icon lord-icon {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.carousel-container {
+    max-width: 100%;
+    margin: 0 auto 1.2rem;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.carousel-track {
+    align-items: stretch;
+}
+
+.carousel-item {
+    flex: 0 0 100%;
+    height: 330px;
+    padding: 10px;
+    background: #CCE9F3;
+    border: 1px solid #A9D8EA;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+    border: 1px solid rgba(14, 58, 92,.10);
+    display: block;
+}
+
+.carousel-btn {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,.94);
+    color: #0E3A5C;
+    box-shadow: 0 3px 10px rgba(14, 58, 92,.16);
+    font-size: .95rem;
+}
+
+.carousel-prev { left: 8px; }
+.carousel-next { right: 8px; }
+
+.carousel-counter {
+    color: #4A7FA6;
+    font-family: 'Playfair Display', serif;
+    font-size: .75rem;
+    margin-top: .8rem;
+}
+
+/* ---------- Fiesta / tarjetas ---------- */
+.party-container {
+    max-width: 100%;
+}
+
+.party-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.8rem;
+}
+
+.party-card {
+    padding: 1.35rem 1rem;
+    border: 1px solid #8CCBE3;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: none;
+}
+
+.party-card:hover {
+    box-shadow: 0 5px 14px rgba(14, 58, 92,.10);
+}
+
+.party-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto .8rem;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.party-icon .tie-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.party-icon lord-icon {
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.party-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: #0E3A5C;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: .7rem;
+}
+
+.party-card p {
+    font-family: 'Playfair Display', serif;
+    color: #4A7FA6;
+    font-size: .72rem;
+    line-height: 1.45;
+    margin-bottom: 1rem;
+}
+
+.party-card .btn-wedding {
+    font-size: .7rem;
+    padding: .55rem 1rem;
+}
+
+/* ---------- Regalos / RSVP ---------- */
+.gifts-container,
+.rsvp-container {
+    max-width: 500px;
+}
+
+.gift-icon,
+.whatsapp-icon {
+    width: 52px;
+    height: 52px;
+    margin: .5rem auto 1.2rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    animation: none;
+}
+
+.gifts-section .gift-icon lord-icon {
+    width: 52px !important;
+    height: 52px !important;
+}
+
+.whatsapp-icon svg {
+    width: 42px;
+    height: 42px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    max-width: 730px;
+    margin: 0 auto;
+    background: #0E3A5C;
+    color: #ffffff;
+    padding: 1.5rem 1rem;
+}
+
+.footer-content h3,
+.footer-date {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+}
+
+.footer-content h3 {
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+.footer-date {
+    font-size: .72rem;
+    margin-top: .4rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .site-container,
+    .page-shell,
+    .hero-container,
+    .hero-wrapper,
+    .footer {
+        max-width: 100%;
+    }
+
+    .hero-split,
+    .hero-left {
+        height: 78vh;
+        min-height: 520px;
+        max-height: 680px;
+    }
+
+    .hero-left::before,
+    .hero-left::after {
+        height: 72px;
+    }
+
+    .countdown-section,
+    .events-section,
+    .gallery-section,
+    .party-section,
+    .gifts-section,
+    .rsvp-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .party-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-item {
+        height: min(78vw, 330px);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-split,
+    .hero-left {
+        height: 76vh;
+        min-height: 470px;
+    }
+
+    .welcome-heading {
+        font-size: 2.45rem;
+    }
+
+    .welcome-cover-message {
+        font-size: .82rem;
+        max-width: 320px;
+        margin-top: 1.5rem;
+    }
+
+    .countdown-container {
+        gap: .35rem;
+    }
+
+    .countdown-number {
+        font-size: 1.9rem;
+    }
+
+    .countdown-separator {
+        font-size: 1.15rem;
+    }
+
+    .event-card {
+        width: min(100%, 310px);
+    }
+
+    .carousel-item {
+        height: 285px;
+        padding: 8px;
+    }
+
+    .carousel-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .guest-section::before,
+    .events-section::before,
+    .gallery-section::before,
+    .party-section::before,
+    .gifts-section::before,
+    .rsvp-section::before {
+        height: 72px;
+        top: -36px;
+    }
+}
+
+/* Portada interior: texto de la invitación de referencia */
+.hero-content {
+    z-index: 3;
+}
+
+.hero-text {
+    max-width: 570px;
+    color: #ffffff;
+}
+
+.hero-text .date {
+    font-family: 'Playfair Display', serif;
+    font-size: .95rem;
+    line-height: 1.2;
+    margin-bottom: .65rem;
+    font-weight: 400;
+}
+
+.hero-text .names {
+    display: block;
+    width: min(100%, 410px);
+    margin: 0 auto .55rem;
+    padding: .18rem 1rem .28rem;
+    border-top: 1px solid rgba(255,255,255,.82);
+    border-bottom: 1px solid rgba(255,255,255,.82);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.9rem, 7vw, 4rem);
+    line-height: 1.05;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.hero-xv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3vw, 1.45rem);
+    color: rgba(255,255,255,.86);
+    margin-bottom: 2.2rem;
+}
+
+.hero-text .quote {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-size: clamp(.78rem, 2vw, .95rem);
+    line-height: 1.45;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 auto;
+    max-width: 570px;
+}
+
+@media (max-width: 480px) {
+    .hero-text .names {
+        font-size: 2.65rem;
+    }
+
+    .hero-xv-title {
+        font-size: 1.05rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .hero-text .quote {
+        font-size: .76rem;
+    }
+
+    .hero-message-break {
+        display: none;
+    }
+}
+
+/* La pantalla inicial de bienvenida queda limpia, como en la referencia. */
+.modal-overlay .welcome-hero::before {
+    display: none;
+}
+
+/* ==========================================================
+   AJUSTES FINALES — ESTILO DE LA REFERENCIA
+   Solo cambios visuales. No altera la lógica del JS.
+   ========================================================== */
+
+:root {
+    --lavender-bg: #DCEFF6;
+    --lavender-page: #F1F8FB;
+    --purple: #0E3A5C;
+    --purple-soft: #2B8FBF;
+    --purple-muted: #4A7FA6;
+    --card-border: #8CCBE3;
+}
+
+html, body {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--purple);
+}
+
+body,
+.content {
+    background: var(--lavender-page) !important;
+}
+
+/* ---------- Flores: solo el arreglo, sin líneas CSS ---------- */
+.deco-divider {
+    display: none !important;
+}
+
+.floral-divider {
+    position: relative;
+    width: 100%;
+    height: 92px;
+    overflow: hidden;
+    line-height: 0;
+    background: transparent;
+    z-index: 8;
+}
+
+.floral-divider img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.floral-divider--hero-top,
+.floral-divider--hero-bottom {
+    background: transparent;
+}
+
+.floral-divider--hero-bottom img {
+    transform: rotate(180deg);
+}
+
+/* Las flores que separan las secciones son el PNG, no una línea */
+.guest-section::before,
+.events-section::before,
+.gallery-section::before,
+.party-section::before,
+.gifts-section::before,
+.rsvp-section::before {
+    background-image: url('floral-divider.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: 100% auto !important;
+    height: 92px !important;
+    top: -46px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ---------- Portada ---------- */
+.hero-wrapper {
+    max-width: 730px;
+    margin: 0 auto;
+    background: var(--lavender-bg);
+}
+
+.hero-split,
+.hero-left {
+    background: var(--lavender-bg);
+}
+
+.hero-left::before,
+.hero-left::after {
+    display: none !important;
+}
+
+.hero-content {
+    z-index: 3;
+}
+
+.hero-text,
+.hero-text .date,
+.hero-text .names,
+.hero-xv-title,
+.hero-text .quote {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.hero-text .date {
+    font-size: .95rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero-text .names {
+    font-size: clamp(2.9rem, 7vw, 4rem);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero-xv-title {
+    font-size: clamp(1.05rem, 3vw, 1.4rem);
+    font-weight: 400;
+}
+
+.hero-text .quote {
+    font-size: clamp(.78rem, 2vw, .95rem);
+    font-weight: 400;
+}
+
+/* ---------- Countdown ---------- */
+.countdown-section {
+    background: var(--lavender-bg) !important;
+    padding-top: 3.8rem !important;
+    padding-bottom: 4.3rem !important;
+}
+
+.section-title,
+.countdown-number,
+.countdown-label,
+.countdown-separator,
+.section-subtitle {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.section-title {
+    color: var(--purple) !important;
+    font-size: clamp(2rem, 5vw, 2.55rem) !important;
+    font-weight: 400 !important;
+}
+
+.countdown-number {
+    color: var(--purple) !important;
+    font-size: clamp(2rem, 5vw, 2.45rem) !important;
+    font-weight: 400 !important;
+}
+
+.countdown-label {
+    color: var(--purple) !important;
+    font-size: .68rem !important;
+    font-weight: 400 !important;
+    letter-spacing: .03em !important;
+    text-transform: lowercase !important;
+}
+
+.countdown-separator {
+    color: var(--purple-muted) !important;
+}
+
+/* El texto bíblico eliminado no deja espacio residual */
+.hero-quote-card {
+    display: none !important;
+}
+
+/* ---------- Celebración: misma tarjeta visual de la referencia ---------- */
+.events-section {
+    background: var(--lavender-bg) !important;
+}
+
+.event-card {
+    width: min(100%, 320px) !important;
+    padding: 2rem 1.55rem !important;
+    background: #fff !important;
+    border: 1px solid var(--card-border) !important;
+    border-radius: 11px !important;
+    box-shadow: none !important;
+}
+
+.event-title,
+.event-details h4,
+.event-details p,
+.event-address {
+    font-family: 'Playfair Display', serif !important;
+}
+
+.event-title {
+    color: var(--purple) !important;
+    font-size: 1.65rem !important;
+    font-weight: 400 !important;
+}
+
+.event-details h4 {
+    color: var(--purple-soft) !important;
+    font-size: .95rem !important;
+    font-weight: 400 !important;
+}
+
+.event-details p {
+    color: var(--purple-muted) !important;
+    font-size: .72rem !important;
+}
+
+/* ---------- Carrusel: fotografía impresa vintage ---------- */
+.gallery-section {
+    background: #fff !important;
+}
+
+.gallery-section .section-title {
+    max-width: 100%;
+}
+
+.gallery-section .section-subtitle {
+    color: var(--purple-muted) !important;
+    font-size: .82rem !important;
+    margin-bottom: 1.7rem !important;
+}
+
+.carousel-track-container {
+    overflow: hidden !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.carousel-item {
+    flex: 0 0 100% !important;
+    height: 430px !important;
+    padding: 12px 12px 42px !important;
+    background: #ffffff !important;
+    border: 1px solid #C2E4F1 !important;
+    border-radius: 2px !important;
+    box-shadow: 0 4px 10px rgba(14, 58, 92,.10) !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #fff !important;
+    border: 0 !important;
+    display: block !important;
+}
+
+.carousel-btn {
+    background: rgba(255,255,255,.96) !important;
+    color: var(--purple) !important;
+    border: 1px solid #C2E4F1 !important;
+}
+
+.carousel-counter {
+    font-family: 'Playfair Display', serif !important;
+    color: var(--purple-muted) !important;
+}
+
+/* ---------- Resto del sitio: misma tipografía ---------- */
+.party-card,
+.party-card h3,
+.party-card p,
+.gifts-container,
+.rsvp-container,
+.gifts-container .section-subtitle,
+.rsvp-container .section-subtitle,
+.footer,
+.footer-content h3,
+.footer-date,
+.btn-wedding,
+.toast,
+.toast h4,
+.toast p {
+    font-family: 'Playfair Display', serif !important;
+}
+
+/* Los botones conservan el funcionamiento y adoptan la estética */
+.btn-wedding {
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .floral-divider {
+        height: 78px;
+    }
+
+    .guest-section::before,
+    .events-section::before,
+    .gallery-section::before,
+    .party-section::before,
+    .gifts-section::before,
+    .rsvp-section::before {
+        height: 78px !important;
+        top: -39px !important;
+    }
+
+    .carousel-item {
+        height: min(78vw, 390px) !important;
+        padding: 10px 10px 34px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .floral-divider {
+        height: 68px;
+    }
+
+    .guest-section::before,
+    .events-section::before,
+    .gallery-section::before,
+    .party-section::before,
+    .gifts-section::before,
+    .rsvp-section::before {
+        height: 68px !important;
+        top: -34px !important;
+    }
+
+    .carousel-item {
+        height: 340px !important;
+        padding: 8px 8px 30px !important;
+    }
+}
+
+/* ==========================================================
+   AJUSTE FINAL DE PORTADA — FLORES SEPARADAS DE LA FOTO
+   ========================================================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* La portada completa queda como una sola tarjeta centrada. */
+.hero-wrapper {
+    width: 100%;
+    max-width: 730px !important;
+    margin: 0 auto !important;
+    padding: 0;
+    background: var(--lavender-bg) !important;
+    overflow: hidden;
+}
+
+/* Las flores ocupan su propia franja: NO se mezclan con la fotografía. */
+.floral-divider {
+    position: relative;
+    width: 100%;
+    height: 92px !important;
+    margin: 0;
+    padding: 0;
+    background: var(--lavender-bg) !important;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.floral-divider img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* La foto queda físicamente separada de las flores por el fondo lavanda. */
+.hero-container {
+    width: 100%;
+    max-width: none !important;
+    margin: 0;
+    padding: 0 14px !important;
+    box-sizing: border-box;
+    background: var(--lavender-bg) !important;
+}
+
+.hero-split.hero-split--single {
+    width: 100%;
+    height: 620px !important;
+    min-height: 620px !important;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: var(--lavender-bg) !important;
+}
+
+.hero-left {
+    width: 100%;
+    height: 620px !important;
+    min-height: 620px !important;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--lavender-bg) !important;
+}
+
+.hero-left-bg {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Nada de flores superpuestas sobre la fotografía. */
+.hero-left::before,
+.hero-left::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* El contenido continúa perfectamente centrado sobre la foto. */
+.hero-content {
+    inset: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* ==========================================================
+   CARRUSEL — MARCO TIPO FOTOGRAFÍA ANTIGUA
+   ========================================================== */
+
+.carousel-item {
+    flex: 0 0 100% !important;
+    height: 430px !important;
+    padding: 10px 10px 48px !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    border: 3px solid #2B8FBF !important;
+    border-bottom-width: 34px !important;
+    border-radius: 2px !important;
+    box-shadow: 0 3px 8px rgba(14, 58, 92, .12) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    border: 0 !important;
+    background: #fff !important;
+}
+
+/* ==========================================================
+   MÓVIL — INVITACIÓN CENTRADA
+   ========================================================== */
+
+@media (max-width: 768px) {
+    .hero-wrapper,
+    .page-shell {
+        width: calc(100% - 24px) !important;
+        max-width: 730px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .site-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .hero-container {
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 610px !important;
+        min-height: 610px !important;
+    }
+
+    .floral-divider {
+        height: 82px !important;
+    }
+
+    .carousel-item {
+        height: min(78vw, 390px) !important;
+        padding: 8px 8px 38px !important;
+        border-width: 3px !important;
+        border-bottom-width: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-wrapper,
+    .page-shell {
+        width: calc(100% - 20px) !important;
+    }
+
+    .hero-container {
+        padding: 0 8px !important;
+    }
+
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 580px !important;
+        min-height: 580px !important;
+    }
+
+    .floral-divider {
+        height: 72px !important;
+    }
+
+    .carousel-item {
+        height: 340px !important;
+        padding: 7px 7px 36px !important;
+        border-width: 3px !important;
+        border-bottom-width: 28px !important;
+    }
+}
+
+/* ==========================================================
+   AJUSTES DEFINITIVOS: CENTRADO MÓVIL + PORTADA + FLORES
+   ========================================================== */
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+}
+
+main {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* La invitación queda como una columna central, también en móvil. */
+.hero-wrapper,
+.page-shell {
+    width: min(730px, calc(100% - 24px)) !important;
+    max-width: 730px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.site-container {
+    width: 100% !important;
+    max-width: 730px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* ---------- Portada ----------
+   La foto ocupa toda la portada. Las flores van SUPERPUESTAS sobre la foto,
+   como imagen COMPLETA (sin recortar): una franja pegada arriba del todo
+   y otra pegada abajo del todo, justo antes de que la foto termine.
+   Así funcionan como división visual hacia la siguiente sección sin ser
+   una sección propia (no ocupan espacio aparte, no tienen fondo propio).
+*/
+.hero-wrapper {
+    background: #DCEFF6 !important;
+    overflow: hidden !important;
+}
+
+.hero-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 14px !important;
+    background: #DCEFF6 !important;
+    box-sizing: border-box !important;
+}
+
+.hero-split.hero-split--single,
+.hero-left {
+    width: 100% !important;
+    height: 700px !important;
+    min-height: 700px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 0 !important;
+    position: relative !important;
+}
+
+.hero-left-bg {
+    width: 100% !important;
+    height: 100% !important;
+    inset: 0 !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Ya no se usan pseudo-elementos recortados para las flores */
+.hero-left::before,
+.hero-left::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Las flores: se usa la imagen real (<img>), COMPLETA y sin recortar,
+   superpuesta sobre la foto de la portada. */
+.floral-divider {
+    position: absolute !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+    z-index: 6 !important;
+    pointer-events: none !important;
+    line-height: 0 !important;
+}
+
+.floral-divider--hero-top {
+    top: 0 !important;
+}
+
+.floral-divider--hero-bottom {
+    bottom: 0 !important;
+}
+
+.floral-divider img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;   /* nunca se recorta: se ve la imagen completa */
+    max-width: 100% !important;
+    object-fit: initial !important;
+}
+
+.floral-divider--hero-bottom img {
+    transform: rotate(180deg) !important;
+}
+
+/* ---------- Carrusel: foto tipo impresión antigua ---------- */
+.carousel-item,
+.carousel-item img {
+    background: #2B8FBF !important;
+}
+
+.carousel-item {
+    border: 3px solid #2B8FBF !important;
+    border-bottom-width: 34px !important;
+    border-radius: 2px !important;
+    box-sizing: border-box !important;
+}
+
+.carousel-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border: 0 !important;
+}
+
+@media (max-width: 768px) {
+    /* La página ocupa el 100% del ancho, sin margen ni "borde" alrededor
+       de la invitación: las flores quedan pegadas al borde de la pantalla. */
+    .hero-wrapper,
+    .page-shell {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .site-container {
+        max-width: 100% !important;
+    }
+
+    .hero-container {
+        padding: 0 !important;
+    }
+
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 650px !important;
+        min-height: 650px !important;
+    }
+
+    .carousel-item {
+        height: min(78vw, 390px) !important;
+        padding: 8px 8px 38px !important;
+        border-width: 3px !important;
+        border-bottom-width: 30px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-split.hero-split--single,
+    .hero-left {
+        height: 620px !important;
+        min-height: 620px !important;
+    }
+
+    .carousel-item {
+        height: 340px !important;
+        padding: 7px 7px 36px !important;
+        border-width: 3px !important;
+        border-bottom-width: 28px !important;
+    }
+}
+
+/* ==========================================================
+   FLORES: reposición final — arriba pegada al borde real de la
+   tarjeta (ya no adentro de hero-left, así se libra del padding
+   de hero-container), abajo a caballo en la costura entre el
+   morado de la foto y el lila del countdown.
+   ========================================================== */
+
+/* La flor de arriba ahora es hija directa de .hero-wrapper (que ya
+   es position:relative), así que top:0 la deja pegada al borde
+   real de la tarjeta, sin el padding de 14px de hero-container. */
+.hero-wrapper > .floral-divider--hero-top {
+    position: absolute !important;
+    top: -20px !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9 !important;
+}
+
+/* Ancla para la flor de abajo: el site-container que envuelve el
+   countdown, para poder posicionarla relativa a él. */
+.page-shell .site-container {
+    position: relative;
+}
+
+/* La flor de abajo ya no cuelga de hero-left (bottom:0), ahora
+   cuelga del site-container del countdown y se sube la mitad de
+   su propia altura con translateY(-50%): así su punto medio cae
+   justo en la costura entre el morado de la foto y el lila del
+   countdown, mitad sobre cada tono. */
+.page-shell .floral-divider--hero-bottom {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    transform: translateY(-50%) !important;
+    z-index: 9 !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ===========================================================
+   Portada: entrada mágica después de la intro
+   =========================================================== */
+
+/* Mientras dura la intro, la portada espera oculta */
+html.hero-pending .hero-text > *,
+html.hero-pending .floral-divider--hero-top,
+html.hero-pending .floral-divider--hero-bottom {
+    opacity: 0;
+}
+html.hero-pending .hero-left-bg { opacity: 0; }
+
+/* Fondo: aparece desde un resplandor suave y desenfocado */
+html.hero-reveal .hero-left-bg {
+    animation: magicBgIn 2.4s cubic-bezier(.22,.8,.3,1) both;
+}
+@keyframes magicBgIn {
+    0%   { opacity: 0; filter: blur(14px) brightness(1.8) saturate(.4); }
+    40%  { opacity: 1; }
+    100% { opacity: 1; filter: blur(0) brightness(1) saturate(1); }
+}
+
+/* Textos: aparecen uno tras otro, desde el desenfoque, como polvo de estrellas */
+html.hero-reveal .hero-text > * {
+    animation: magicTextIn 1.6s cubic-bezier(.2,.8,.25,1) both;
+}
+html.hero-reveal .hero-text .date        { animation-delay: .5s; }
+html.hero-reveal .hero-text .names       { animation-delay: .95s; }
+html.hero-reveal .hero-text .hero-xv-title { animation-delay: 1.6s; }
+html.hero-reveal .hero-text .quote       { animation-delay: 2.1s; }
+
+@keyframes magicTextIn {
+    0%   { opacity: 0; filter: blur(12px); transform: translateY(18px) scale(.96); letter-spacing: .35em; }
+    60%  { opacity: 1; }
+    100% { opacity: 1; filter: blur(0); transform: none; letter-spacing: normal; }
+}
+
+/* El nombre además brilla un momento al terminar de aparecer */
+html.hero-reveal .hero-text .names {
+    animation:
+        magicTextIn 1.8s cubic-bezier(.2,.8,.25,1) .95s both,
+        magicNameGlow 2.6s ease-out 2.2s both;
+}
+@keyframes magicNameGlow {
+    0%   { text-shadow: 0 0 0 rgba(255,255,255,0); }
+    35%  { text-shadow: 0 0 18px rgba(240, 249, 255,.95), 0 0 42px rgba(140, 203, 227,.85); }
+    100% { text-shadow: 0 0 8px rgba(255,255,255,.35); }
+}
+
+/* Flores de arriba y abajo: se abren desde el centro hacia los lados */
+html.hero-reveal .floral-divider--hero-top,
+html.hero-reveal .floral-divider--hero-bottom {
+    animation: magicFloralIn 1.6s cubic-bezier(.3,.8,.3,1) .3s both;
+}
+html.hero-reveal .floral-divider--hero-bottom { animation-delay: .6s; }
+@keyframes magicFloralIn {
+    0%   { opacity: 0; clip-path: inset(0 50% 0 50%); }
+    30%  { opacity: 1; }
+    100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+/* Capa de destellos */
+.magic-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* Barrido de luz que cruza la portada una vez */
+html.hero-reveal .magic-layer::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    width: 45%;
+    left: -60%;
+    background: linear-gradient(100deg,
+        transparent 0%,
+        rgba(255,255,255,0) 20%,
+        rgba(245, 251, 255,.45) 50%,
+        rgba(255,255,255,0) 80%,
+        transparent 100%);
+    transform: skewX(-15deg);
+    animation: magicSweep 1.9s ease-in-out 1.1s both;
+}
+@keyframes magicSweep {
+    0%   { left: -60%; opacity: 0; }
+    15%  { opacity: 1; }
+    100% { left: 120%; opacity: 0; }
+}
+
+.magic-spark {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, #F2F9FC 35%, rgba(140, 203, 227,0) 70%);
+    box-shadow: 0 0 calc(var(--size) * 1.6) rgba(235, 246, 255,.9);
+    opacity: 0;
+    animation-name: magicSparkRise;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+}
+.magic-spark.is-star {
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    color: #F2F8FC;
+    font-size: calc(var(--size) * 2.2);
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(230,240,248,.95), 0 0 16px rgba(190, 226, 240,.8);
+}
+@keyframes magicSparkRise {
+    0%   { opacity: 0; transform: translate(0, 0) scale(0) rotate(0deg); }
+    25%  { opacity: 1; transform: translate(calc(var(--drift) * .3), calc(var(--rise) * .3)) scale(1.2) rotate(45deg); }
+    100% { opacity: 0; transform: translate(var(--drift), var(--rise)) scale(.3) rotate(120deg); }
+}
+
+.magic-twinkle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 6px 2px rgba(240, 249, 255,.8);
+    opacity: 0;
+    animation-name: magicTwinkle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+@keyframes magicTwinkle {
+    0%, 100% { opacity: 0; transform: scale(.4); }
+    50%      { opacity: .9; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.hero-reveal .hero-left-bg,
+    html.hero-reveal .hero-text > *,
+    html.hero-reveal .floral-divider--hero-top,
+    html.hero-reveal .floral-divider--hero-bottom {
+        animation: magicSimpleFade 1s ease both !important;
+    }
+    html.hero-reveal .magic-layer::before { display: none; }
+    @keyframes magicSimpleFade { from { opacity: 0; } to { opacity: 1; } }
+}
+
+/* ===========================================================
+   Iconos ilustrados (tiara, cámaras, corbatín, regalo, formulario)
+   =========================================================== */
+.event-icon.animated-heart,
+.camera-icon.animated-camera,
+.party-icon.animated-dresscode,
+.party-icon.animated-clipboard,
+.gift-icon.animated-gift,
+.whatsapp-icon.animated-whatsapp {
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icono-invitacion {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    filter: drop-shadow(0 4px 8px rgba(14, 58, 92, 0.18));
+    animation: iconoFlotar 3.4s ease-in-out infinite;
+}
+
+.icono-tiara          { width: 118px; }
+.icono-camara         { width: 104px; }
+.icono-corbatin       { width: 78px; }
+.icono-camara-subir   { width: 96px; }
+.icono-regalo         { width: 86px; }
+.icono-formulario     { width: 56px; }
+
+.gift-icon.animated-gift,
+.whatsapp-icon.animated-whatsapp,
+.camera-icon.animated-camera {
+    margin-top: 1.2rem !important;
+    margin-bottom: 1.2rem !important;
+}
+
+.party-icon.animated-dresscode,
+.party-icon.animated-clipboard {
+    height: 78px !important;          /* misma altura en ambas tarjetas */
+    margin-bottom: .6rem !important;
+}
+
+@keyframes iconoFlotar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .icono-invitacion { animation: none; }
+}
+
+/* ---------- Detalles: tarjetas más angostas y elegantes ---------- */
+.party-grid {
+    grid-template-columns: repeat(2, minmax(0, 250px)) !important;
+    justify-content: center;
+    gap: 1.1rem !important;
+}
+
+@media (max-width: 640px) {
+    .party-grid {
+        grid-template-columns: minmax(0, 270px) !important;
+    }
+    .party-card {
+        padding: 1.4rem 1.2rem !important;
+    }
+}
+
+.party-card .event-title {
+    font-size: 1.45rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: .5rem;
+}
+
+/* ===========================================================
+   VARIANTE: toques de DORADO y ROSADO
+   =========================================================== */
+:root {
+    --oro: #A3BDD1;
+    --oro-claro: #E6F0F7;
+    --oro-grad: linear-gradient(90deg, #7F9CB3 0%, #E6F0F7 45%, #A3BDD1 60%, #7F9CB3 100%);
+    --rosa: #2B8FBF;
+    --rosa-suave: #E3F2F8;
+    --rosa-fuerte: #1F7FAF;
+}
+
+/* Títulos: adorno perla debajo con un diamante azul */
+.section-title,
+.event-title,
+.party-card h3 { position: relative; }
+.section-title::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 10px;
+    margin: .55rem auto 0;
+    background:
+        radial-gradient(circle, var(--rosa) 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+        linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat;
+}
+
+/* Subtítulos y etiquetas en azul */
+.section-subtitle { color: #4A7FA6 !important; }
+.event-details h4 { color: var(--rosa-fuerte) !important; letter-spacing: .04em; }
+
+/* Tarjetas: borde perla fino + leve brillo azul */
+.event-card,
+.party-card {
+    border: 1px solid var(--oro) !important;
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 70%, var(--rosa-suave) 100%) !important;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 5px rgba(163,189,209,.35), 0 10px 24px -12px rgba(14, 58, 92,.35) !important;
+}
+
+/* Botones: morado con borde y brillo perla */
+.btn-wedding {
+    border: 1px solid var(--oro) !important;
+    box-shadow: inset 0 0 0 2px rgba(230,240,247,.35), 0 4px 12px -4px rgba(163,189,209,.55) !important;
+    position: relative;
+    overflow: hidden;
+}
+.btn-wedding::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(236,244,250,.55), transparent);
+    transform: skewX(-18deg);
+    animation: brilloBoton 3.6s ease-in-out infinite;
+}
+@keyframes brilloBoton {
+    0%, 60% { left: -60%; }
+    100%    { left: 130%; }
+}
+
+/* Portada: líneas del nombre en perla, fecha en azul */
+.hero-text .names {
+    border-top-color: var(--oro-claro) !important;
+    border-bottom-color: var(--oro-claro) !important;
+}
+.hero-text .date { color: #E3F3F9 !important; }
+.hero-text .hero-xv-title { color: var(--oro-claro) !important; text-shadow: 0 1px 6px rgba(0,0,0,.25); }
+
+/* Cuenta regresiva */
+.countdown-separator { color: var(--oro) !important; }
+.countdown-label { color: var(--rosa-fuerte) !important; }
+
+/* Galería: marco perla */
+.carousel-item { border: 3px solid var(--oro) !important; }
+.carousel-btn { border: 1px solid var(--oro) !important; color: #7F9CB3 !important; }
+.carousel-counter { color: #4A7FA6 !important; }
+
+/* Pie de página */
+.footer { border-top: 3px solid var(--oro); }
+.footer h3 {
+    background: var(--oro-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+.footer-date { color: var(--rosa) !important; }
+
+/* Iconos: sombra cálida en vez de morada */
+.icono-invitacion { filter: drop-shadow(0 4px 8px rgba(127,156,179,.25)); }
+
+/* Destellos mágicos en perla y azul */
+.magic-spark { background: radial-gradient(circle, #fff 0%, #E3F2F8 35%, rgba(140, 203, 227,0) 70%); box-shadow: 0 0 calc(var(--size) * 1.6) rgba(230,240,247,.9); }
+.magic-spark.is-star { color: #DCEAF4; text-shadow: 0 0 8px rgba(230,240,247,.95), 0 0 16px rgba(140, 203, 227,.8); }
+.magic-twinkle { box-shadow: 0 0 6px 2px rgba(230,240,247,.85); }
+
+/* ===========================================================
+   CARRUSEL — el marco se ajusta al tamaño de cada foto
+   (lados delgados, parte de abajo más ancha, estilo foto impresa)
+   =========================================================== */
+.carousel-item {
+    background: transparent !important;
+    border: 0 !important;
+    padding: 6px 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.carousel-item img {
+    width: auto !important;
+    height: auto !important;
+    max-width: calc(100% - 12px) !important;   /* resta el borde de los lados */
+    max-height: calc(100% - 34px) !important;  /* resta borde de arriba + abajo */
+    object-fit: contain !important;
+    box-sizing: content-box !important;
+    background: var(--marco-color, #2B8FBF) !important;
+    border: 5px solid var(--marco-color, #2B8FBF) !important;
+    border-bottom-width: 28px !important;
+    border-radius: 2px !important;
+    box-shadow: 0 6px 14px -4px rgba(14, 58, 92, .35) !important;
+}
+
+@media (max-width: 480px) {
+    .carousel-item img {
+        max-width: calc(100% - 10px) !important;
+        max-height: calc(100% - 30px) !important;
+        border-width: 4px !important;
+        border-bottom-width: 24px !important;
+    }
+}
+/* Variante perla y azul: marco perla */
+:root { --marco-color: #A3BDD1; }
+.carousel-item { border: 0 !important; }
+.carousel-item img { box-shadow: 0 6px 14px -4px rgba(127,156,179,.45) !important; }
+
+/* Marco del carrusel en morado (también en la variante perla y azul) */
+:root { --marco-color: #2B8FBF !important; }
+.carousel-item img { box-shadow: 0 6px 14px -4px rgba(14, 58, 92, .35) !important; }
+
+/* Cuenta regresiva en blanco (fondos alternados lila / blanco) */
+.countdown-section {
+    background: #ffffff !important;
+}
+
+/* ===========================================================
+   Portada: texto más abajo para no tapar el rostro
+   =========================================================== */
+.hero-content {
+    align-items: flex-end !important;
+    padding-bottom: 125px !important;   /* queda por encima de las flores de abajo */
+}
+/* Sombra suave abajo para que el texto se lea bien sobre el vestido */
+.hero-overlay {
+    background: linear-gradient(180deg,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,.05) 45%,
+        rgba(6, 30, 50,.38) 100%) !important;
+}
+.hero-text .date,
+.hero-text .names,
+.hero-text .hero-xv-title,
+.hero-text .quote {
+    text-shadow: 0 2px 10px rgba(5, 25, 45, .45);
+}
+@media (max-width: 480px) {
+    .hero-content { padding-bottom: 105px !important; }
+}
+
+
+/* ===========================================================
+   Modal de bienvenida con los toques perla y azul
+   =========================================================== */
+#welcomeModal { transition: opacity .7s ease; }
+#welcomeModal.is-leaving { opacity: 0; pointer-events: none; }
+#welcomeModal .welcome-date { color: var(--rosa-fuerte) !important; letter-spacing: .12em; }
+#welcomeModal .welcome-heading .names {
+    background: var(--oro-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+#welcomeModal .welcome-heading::after {
+    content: "";
+    display: block;
+    width: 140px;
+    height: 10px;
+    margin: .8rem auto 0;
+    background:
+        radial-gradient(circle, var(--rosa) 0 3px, transparent 3.5px) center / 10px 10px no-repeat,
+        linear-gradient(90deg, transparent, var(--oro) 20%, var(--oro-claro) 50%, var(--oro) 80%, transparent) center / 100% 1px no-repeat;
+}
+#welcomeModal .welcome-subtitle { color: #4A7FA6 !important; }
+
+
+/* ===========================================================
+   DETALLES DEL MAR — conchas, estrellas de mar y perlas
+   =========================================================== */
+
+/* Guirnalda marina entre secciones (reemplaza las flores) */
+.hero-left::before,
+.hero-left::after,
+.guest-section::before,
+.events-section::before,
+.gallery-section::before,
+.party-section::before,
+.gifts-section::before,
+.rsvp-section::before {
+    background-image: url('floral-divider.png') !important;
+    background-size: auto 100% !important;
+    background-repeat: repeat-x !important;
+    background-position: center center !important;
+}
+.hero-left::before,
+.hero-left::after { height: 56px !important; }
+.guest-section::before,
+.events-section::before,
+.gallery-section::before,
+.party-section::before,
+.gifts-section::before,
+.rsvp-section::before {
+    height: 62px !important;
+    top: -31px !important;
+}
+.floral-divider {
+    height: 58px !important;
+    background: url('floral-divider-trimmed.png') center center / auto 100% repeat-x !important;
+}
+.floral-divider img { opacity: 0 !important; }
+
+/* Adorno bajo los títulos: perla · concha · perla */
+.section-title::after,
+#welcomeModal .welcome-heading::after {
+    width: 170px !important;
+    height: 28px !important;
+    background:
+        url('concha.png') center / 32px 25px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") calc(50% - 27px) center / 8px 8px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") calc(50% + 27px) center / 8px 8px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") calc(50% - 41px) center / 5px 5px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") calc(50% + 41px) center / 5px 5px no-repeat,
+        linear-gradient(90deg, transparent, #A3BDD1 25%, #E6F0F7 50%, #A3BDD1 75%, transparent) center / 100% 1px no-repeat !important;
+}
+
+/* Fondo de las secciones celestes: conchas, estrellas y burbujas muy sutiles */
+.countdown-section,
+.events-section,
+.party-section,
+.rsvp-section {
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22320%22 viewBox=%220 0 320 320%22%3E%3Cimage href=%22data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAAG4AAABWCAYAAAAucqM7AABGFUlEQVR42u29d7xd2VEm%2BlWttcOJNyeFqyx1S%2BqW1DnY7YiNbcAJDAzYBEcYGJjHDEMaeGbmvcEww4OBxgEbGIONaWyM2wYHPG7HdksttaRWzule3RxOPnvvtareH/vcNvN%2BxAFsP/D6/e4/3Vfnnr1qr6r6vvqqFuGf4XrssSvxZztZiCTgkazlfvQ1e5v6z%2BwZ6Z/DQxw%2BrMFvP3nyno53z%2Bsm2V3Ouw0KjhVkiDVllTkmOhUF5jND1eALv/4DB1a/Ybiv4fr1Pz8fHb7QeE0rdW9JndxtbBCICLx3cKIgAMYwmDh/VM1grblQCoP3bx8wv/XW1%2B2f/4bhvsrrh991dP9CPf1vqdfnewWyzMEaQqVg076i7RYDIwCQODGNxIe1VhamzhEzw9oIkdELgxX6mXe%2B6e4PfsNw/8D1C%2B87PHxzVXZ68Kh4iWBMO7R2eqLYufjW195XX/u9N7/9qZcvNLJ3OtUx55wUY4tto6Xl7ePl6ZH%2BcKYaB8vGQBhQ55WTzFdW227synxr8uT12shCPWFrAjaG/Ghf%2BDO/%2B8N3/rL0guA7Hz1cfHom2NZOs01etcKWXBiaxUj4wm%2B%2Bad%2BUfsNw%2BVJVetPbj76g3nU/mHh90GV%2BHZgtKaBQMDQJLF8rRPyZvqJ5T%2BZ5bL7W/aPMa0lFdOt4uXX/rsFTk8OFM4a45UVSEUqZyIHg1HtVUEiG%2Bgykb7Wd7Tp0fmnnk5drZe%2BVoziksb74Z8YqwaPXl7rf10qyl2TOb1WlIjGDiEAkQqCF0ODIUDn8g%2BfuHf7T1zww2fkXa7j/43efvuXmavrLzcS9FGRMlmVQ78FEIAKYAAEBRLCBBfmsJQoRkgoTcO/24eUHdw08YZluKHESWEoJlILgSEksQ5wIERmT%2BazoFUWoVi3R8PGrq7s/9fTihtR7CgPrDXMn86aSZRkIAsMEgkJUIQqoAsZYWEMoxfZgf4V/6uEfOPDZf3GG%2B76HD7%2Bi0cx%2BK1MzkWapRlEg64fizsb%2BaHmkGjZDyz4TNUuNbunyfGdgeqlTypyyZYKo4P6dg7UX7h05KKBpNpRYw22FpkzIiMgz%2BJnnU1VSiPFOQ68%2BypyGYWCGjl5efejjxxdGFUqiIAPSiYE42TxaXB6pBCuBNWkqahqttHpjqTNwbaFd6mbCQRCzZd8eroY/%2B%2B43H/g10X8hhvv%2Bh4%2B8arXlfj91UoSKbh0vd%2B/f2X91w0DxCrO2ASiBFQTPpOQ8KrOrnR1fOrc8eXamFW4ajrPXPrjhGBu%2Baq1pGZaEYJsgzZjgiFQYDCIyACAiCoBEYbyqSTNnM68VUr31E0%2BvHDh6vVbcMBDJs3b2z20aLZ2zhpa8aAKFMIGZKFRIZb6Wbjh8aXXLqel20YtyFFmMlvln3v7GO/7LV3sPzVf7D/6bdx/au9jSRzKv/QroA7cMLr7k9qETQ5XwmmFuGSJhIiFSZVIhYs9EWX/RZhuHC%2BHTN5rVamzcXdv6bzChbQxnhjhjpowtiyVSJsAQGEYtgwxZYlWyYDBEQQQoccCkhZurybrplbT4LQdG53aNFy4o8RyppobJGyYhAhgsBE0rBVu/ZV2lXS3a%2BMp8q9BNHXUdHnro1W8%2BceRj7zr71dxH/uoyGmrn6/TLTmhUoPLQrYO1F902fCgMg2vW2K4NGFFoJAxJCpF1cRS4IGAXWPJCcNU4aKzri1y948NuhqqxxjAAIigAWEABATMTEQyBjZIGJBoTa8yKEAxmMAhQJTKzq0lYjY0fqwaLAm5apiwMbRpZ46Mw8HEQpkHAWWBtYgy3wTxz7/b%2B49965/iCIdI088FiI/vVX/jQxdF/tob7/dPHXtz1%2BuIsS/XWiVLy7B19l0W0ZQ3UGtLYkAYERIbVMGCIEDCDAARMrhBSc7QadhvtzNQ7rmIJTAbKDFgGGYCtYcuE0DAHljSwhIBIA1IKoBpaYquk1jI4SaW40sqiSsF2K4Vg2RhOAyYJDUsYsAQEDRhqA/ahNT7/f%2BTSTNr7N1Vu3L%2Bjv%2B2yTFPlLVdvLr3xq7mX9p/6D/zmIyfLC11XLJfKOHJ9%2BY2ixMU4lOftGb4ZBLwKYg6YwQbCIJBhgQoZAMwMr2IQMImXxBAvT/SHtdRr//RKp7B5OEKegyIgJhFSywCYQQQQhBgkPeepFoYJqgETgZnClWbat9p2dstoaakY2yXvpcvMnghkiARGVMHKAIQVhsiLkLeGvPdaf3DnwNSZm83NC/Usaht%2B7a985Oz7M1%2Bul%2BJ29m9ftrP%2BT5m0/JMY7kfe/tS%2BWoZvS72/%2B39ebewwhku8mFHqZTR1Tm9dP9gar8bzHl5CQzAEyuMaCyDKBAJASsJMIPJMHpop1I9Uo%2BWAdXKpnsREZCEaKBMDygT1TKykIDBABlBhpfw0GoUaUVgiYstq5xtp1SuwabhQt4SWB2dM5LmXshEDOYRjYZAXYVYDR54soFm1aJf2b%2B7r/9TxhZEk0%2B1HrjQeV60nzrn0Vb/yxHRs%2BIlSOfjYO96w/8tEJF%2B3hvvxdx3dM9/2PztdT17uyBZFFaSMVBTiHQgqkTXYNV5uMKtTZWbAMIOZWdcSAQWUieDVK5QVJMqW1XvloWq0GgdW5htpUUAFgbaMKINJCQQCFAyQKgMAE0EFqgAITF6dJQIDHC02XSlgYKQa1rzCGYIHiSdiMAMkDDVMgJB4gAyERIWZPDE09YrJwSiNQ4PMCzU6fpwIgAJeZEeH8dxG0vmJf/XrTz72b9/z1P/9/7z%2Bjs99XRmOAHz/w0%2B%2B/spK522CYEg8EAVeRwcKyVhfmFQKQcpQbiW%2BeOp6I7w03%2Bzbt7k0FDCtkqE2ETsiJSYoEXkIBIAwWISgRAyvQgDQXwybg9Uom13pBK2uxHHIRnt2YSISqLKSKIFIYYmJlSBQ9aK9l17BSlpYqKXFYshusGyXFRBiKBMLcf5MzPmXgLDmn0xKDIXktIAhDs/PtMuiiv2b%2B7qVglkS0a5zWlhsdPvnVrqFZtfbZte86JpLH3rDOw7/t7e8%2Bc633kWUfc0NRwBe9/CTP7vcyP5T4pSAVPdMVpv3bu%2BbnugPlyzblAhkmQqBpWEAE1%2B%2BsFy4Z1t1cOd4qeE0P3G9zFChStaSU1UVISGoKoQMMZQEASMbrkbtG4udwZVWWlwfx6yqDBCB1vJLACBVKJGAACFmJvFCDIKHcqvrysvNNOovBmklDjprp5MZ4Bw3kAJMKgywMLOK98QicAJYZp2rp5UjV2rlTcPFzivvGDkhwJQXdIjIQnVgsZGOPnFxZcvTV2v9na7Gy%2BCfffi3nhx%2B7DH9kec9j9zX1HDf%2B5uHXrvS9L/ovKBYCOR5u0euHdhUOWsYLRDDEAyRWhCliVO6f0e/PXG9tv5zp5b6to2WisSoi0rIQqlhcsSAerCSgIh7R4hVvRAIpIAf7YsaQjy40EjLG0cKRpU990yWe0k1UBAReocXUMlPrABERGaxkZUbncxsGy93woBS8QoGoAJWyo2GXpKjJCRewQRyYFKIMhA8cXFl1EP5oVuHL4L4qoK61mgmohBCd7gSzr90/8j89rHSnk%2BfWBhfaSXG%2BfDNv3vi4AyAt37N4MC/%2B8MT2xot%2BZUk88yW6FvvGL/04I7Bp6ylGhmThoaTKOQksLbLrG1jqL5uIJ69b/tA/dRUPT57sz4WGo4ADlVhvQIi%2BdlhZcNgywRLEJNvopL3quv6wkZgGUstVzFMERQkCkBFFUogcB7u8kcUZQJYBVDN8bddzGMkrR%2BMaqxIwYBAKUcfygRlytMTomfcMAxIjWXim7V07NiVWv%2Bt66qNnetL54nRDA11Q2vSMLRpFARdYzgxxi7ftqly6lX3TFwuRSxJkmojoZ/%2Bsd898dyvmeFuziU/oWzHANX7tg8u715XvJipF2sYsSUNA4CJ1VqSwFoXGkoE0rh7%2B%2BBCuRDo50%2BvVEWpBIXpsTisvRCUU4xCCjVQMrkvBIggAyVbKwRw87VuCaqFfINBzzB4%2BozDVFXJa6iQnP5SJUDD2VpSNYYxUrY1p%2BK150b/MhNIUAVUBQpVJShYFRZMlS%2BeXV6fOKUHdg7MB8ztwBpvrREmhjGsgWENA6uhNV49WptGCpdfvG98MQitethorpH83DsPHw6%2B6oZ789uPrm8m7tVZlmHrWCV5zi2DlxScWUMUGIPAGjAzjCExgFiCN8RdUeoOVezig7cM1S8vtKNTNxqjlhErNCBlwyBSEg/OWX5m9DwuWWJmAahaCNJqHLiFRhp2U4kAJShZVTJQgJg8ETkiFiIWyl%2BAQJ1GUA1FUFqoZ6UoYOkvhon3YBDntItSxoRUiVxufyaGyTMVVcOklRuLna2nbjYq%2B7ZU69tHC1dUNDPMwpxjSAsQE2AMqWFKyXDLK9Xv2FK9dvumaifNEm0n8pyjT%2BHZX3XD1brpSwU8qoDeua1vqRzxqjUKy8zManJ3gxxIGxIi8gR4BjlVbd27fWCuWjDyuTOLg0IoMTERraUIJAA88gwTnMerHFcTcRyadKgapvWOt42ODwFAGawkeVTSPKMRqIoKeSjn/1wtmLmTSbRQT8JKaFy1YFPNw5eSgUBEoOoJEIKBqrJAGdI7bUqVgxeW14kq3799YEYIq2A4y%2BQMoIEFrAUx9/wskximzDClqrR85%2BbqfGhZldjWE331V9VwucuiFxERBsuR2zJcmHNKCTN7Q6RrP4E1ytzLCAA1hsQa8gqkgyU7t29z3%2BqZqUZ85kZjyBpiJ0ICgarmMUqVAFLkMKFXmiNlhhupRO1W4nipmRaNMT1/xtr7gj3mJP%2BnrCAva1BAqNZ2Ua2TmtFq1AkDbhNBAFUIAM5tnFcTvAGIVTT0ohGxBteWusNHr9bKu9dVGpuHCtfFIzXIXTMZElKSvLqRby7l5UQlgnhRP94frqzrj1NVQeZx/yOPnAy/aoZjJojqLYDHxGDUrRSCFRF4AwhRHkTyHxEiiCERhtdeYcwTcwqgfv/OgevVgtUvnl0ayTJfEVWjqiyqVgWB5nFPFT3WgZRU1aiAB4um47zSfCMtSX5ARHobqAJW0UAVFkSkyHNOAZRAptbOyl6ZxgbiNhO1BRAlyhMXUobCKMGowohq4L0WRLVAyn0HLy5vZAI/dMvQZRuYWWZOVPNMllUZnGNRQ%2BRh4BgQZqMMMDNxHJru5pG4Jd4jc37z4cSP/pPDgXf/6ZnKodnkwW6aftNq221NvWK8L0oDCxJPpheCBPmb5klJwAphEOW8oRCMWq%2BaeqGRSrywf0tf/Ynzy4NXFjqD28fLi17EGkNe85dWc/AMBsCkMAywCDBSDduWIXOraYEULABIhRUMcJ6MkIKhDCISNUxwngmk8/U0BpgGy8GqqCZ5/S43ugiYWIlEee3UEYiZNJipZaNnppqVnRPlxuRwPO2ceMPkiaDMYAI0j4sk4DzTUoJClUEUEKkBIKMVm0BUVU11esn90usfPvLR0ZHKZ/7La3Yu/KMa7lc%2Beax09Jx/0ycutl7vVfY4YXiBgqBQsQRUiAjEaBEjIZAngihDcobBaO7FBAowCN4wpSKK%2B3cMzB29sjrw5fOro9tGS/MKbYiQY4MsP225emHNeKowAkV/KeiUIuvn6t1i6rWoqh02gJAaVpABkxgAQqqAqKisgfL5WhJbBobLYV2JvOkxIoZyZ0kEJjCJivboq4CIqgcvrEwkTvS%2BXUM3iLTNbHJXzAzm3GIEGIgwEYkTMBECgsYERF4kNESB5OhCVZXaHt/T9fo9tRsr177/4ace2TRu/vtbX71v6h/sKn/8947ueeJE8slmV3%2B1nfk9TgT9Bcp2rS%2Bno9VID12sVa4uJuuigAtrn5djYdI8xuSyHwAwvYSbDYlh40Dk1g3ES/u39LVO3WyUry93Roko9KrGeWXJ3R5UkH8GYS38oBzZdKgcZLVWGnUT6QPBiMJAxQo0UIIhBSuUVERJ4QE4JxosNdK4GLHrL9kmBNI71c8AeEA5D8u8Jn4IF5vp6MmpRt%2BuddX2jtHCnPOqRFBigCE5HlHJa7gMQ0QGBANQqKBYQCEzR0stN/z5c7W%2BYsg6ORhm/TGyLEu11fWbVrvy709fTT7/r991%2BMX/IMO94V1H908tuY9lyg9mPpXJ4bjzirvGL7zuofWHvufB9Qdfcfe6ywD0I4dmR5ea2bAhClUpAhCsxeXcgnmGtQaKSZ7ZITiR9t3bBuYERE9erg8ZUEAAicCoh1GAVYUAUtE8yJOBhAEnI5UwqXedWe1kRdM7KALuvR6kRCRE5JjgBBBR1STToNZxQX8xSIoht0TFkaqjNeyfnzYmgL16I6LGEEfHrzeGmqk3d27tnwGwSkSZQjwRCxikKgbMhlQtiK2IRlAKoQhJEBNp3E1l4NEj8xP1jgu%2Bef/4je%2B8f%2Bz49zwwceQ7H1x/Zue6QsOniXYy3TJd8x980zsPv%2BJ/y3A//f6nx1Ya6fsypc2iIndtG1z9zgcmnti7ofxUObbXnJeZzcPxyW%2B7a/TKcjOx7//CjclWIpMMHVSlgog3omCvyrxmQAGYoWwZBDXEagjwGwej%2BVsnSq3jVxt9c7VkWBWBkoYeEimpZTBUVAzBq0BI4Im5O9Yft5wAq63MgKHUw0/UgwMqcIBkInlKyURUa6dxrZ2ZwRJ3A8MJEbseYQPKkYdVRQBoBOKQiIJG4gcOXVzuWzcQd3ZNlK47UIdACRF5YuRIhdkQYMFkoRqCEBFrLColJa2Ik9GPHZ2bvLLYKjx/z9DcbZPlk8x2ulCw01tGimdfc//k4effNrrARiXzUl5suPf8%2BO8cvuPvbbgb892f9bC7nXOyb1N/7SW3Dx2JDWZAlARMmTWcKqR7YFP10otvH1q%2BNNeOPvLk7KQC/ao%2B1BzCGUKenSnAUDAEpF44Z3BJmNkxoXX3lr7FRjc1R6/WR6yhgqoGpLm7Ewbl8A4gQ0oGKiI6UDaJKrDcygoEojyrFO1ll6oQ9SKkygxVa5jD1bYvZV4xXI46IEoVMIbZMMEywfT%2BkhFFICIFQ1w4MVUfXqin9o5N1cU4QK1XrAXnWIGhyDk1VVZVFlErqoGIRl40ZELhixdq649dbZQe2DHYeM6ugXNE1Aqs7QbGdAmmq5Cle7dXTz3nlqFlkGoKHpxedb/017Erf6Xhfuzdh3a1Un1tliYYH4j9N%2B0ZOGeNWbXWeGspCyLjrGUJjZHUSffZtw5dfM6ewfqTl5fjTz69sM5aLgm05FWKUISaU1prrnINZgv33JiCu9smSvNbRwvp8Wu1aivx/QQOVdXmmZ1aAgwUlKfX7IgoGSqFNcuqi420SIQAEKiw5KxHD7gpWYFGCioQo9DoZiUAGOmLGqSi1sBSnvEFULIEYs2JagvRYpr5oSOXa/0j1dDt21SddQJnDCvnwharIEtQg179D1/JTq1TRIGh4hMX6xsfO7M8cNuWvvqLbxs94YEVgmbWIDFMWWDVBUxOBY17tlXPbBurtF2WIhG84Ngx86K/s%2BFWu/aVaoJ%2BBfSOzZXFatEsMCmsMRIYFsPQgEmtYQ2s8Qqsfssd6y7ePlntfuH0Qv%2BhS7Wthkx/5qXoRUJVtUpgJc1jnEHO/EGViTwRXGi4cd/2wdXFZhacnmqNMWnBq1rfgwCqanrg2pPCKyirxkGzGIV%2Bte1jVYp6gE96kE4VIK%2BwShoptEBAvNr0xTAwGCwHbSU2TBwQSQCw8SrWq7L3SiJqiCm%2BNN8em1psxXdt7a9XY64RkeRwUgwxjKpYJRgFTI/6gSDPRFlRPHOzvemjT90c7y9Y98o7J05HIc%2BzMWlgTWqNyaxlb62R/Mc6a2jpnq3VqcgaKJiXG%2Bn3/p0MRwCSTJ7txaMSG906XJh3HolhdsYAhomsMWqI1TJJYCljw50ooPlvv2/d1cFq7D94cG7s3M3GppA5cALjFEa82nw784DCYM1r0nka51XSHRPFuaFK5A5dXh3wXmOAkNc%2BSQFIj0sUAlRVEVrqVoo2bWY%2B8l6i/HFUPSAiJNpLNlRhIDDea7RQTwrFkP1AKUigGqiqJRBD1RDIaE4CGO/ViNfoyNV6pRgFsn9T/7QTaquIEPdqRPkWKryQAuRE2XuQy4RU1c7WktEPHro5HlrWb797ZKoS85KCnDWUMZNnYk%2BAGIIwwTNrpmrcxsF4fqgUpN55dJ3c9guPHi7%2BrYb7%2BUcPF9PMbVLvMVKNk8FSUM95RhYGOGC2BrBsiXOIRWnA3BTFaiU2519%2B5/hFY1k%2BfGhu/ULTTTJRQUV77pJ6Jw0q6ElpuPeqKlCK7PLtk9XVqwvt%2BOpSd9Ay57w%2BVPOT1GNG1kCoJTdSDpJW29t2JhGzsuYV8EwVDgJlysuiCqVWksUr7SzsLwZZITSu54ItEWx%2B6jRU1VihMRkEs7W0curGanHnhr7acDWcVlCHmVJVFiYjEPS46bwmpKJInSMBkDgd/dPDM1vq7dR8210TU1vHilcV1DVMKSm84ZxRskxesUaKm5RIJAy4PdoXtUUIojS%2BcJ1G/nZX6U3IhmNVII5MxoaFe0V8ZmaFWqgGDGXDrMQQEDLDlHjRzvbxwqVvuX1oZrHeto8emd0oilEQF7xqkLsuJe2Fn1yqwNqDCwBpsm9TZSYOSA5fXhkmRQRQ7nsECiL9S80ixjL5kbLtdNLMrHZ8Md9GUhC85ifUOy%2ByRml1MomamdjR/igNDXvNi7x58qRsSGEgGkA1METRsWu1wdSJ2TdZmQbQZBJviL0x6nNqj1QFpAzyCvYe5IWIiMqPHp3fdu5mM37B3pGFA5PV85nnJjMcM4lhrAVEguayUIJo7oOMGpBWC0GmCpAi9iaPy3%2Bz4bLAqapT5MhGlYxCIyYKIWrRU1D1WA0wkRomJUCspdR7bdy3s%2B/0C28fWTo73Yj%2B7Oj8JkAHRNR6r5TnKPxMlkJehQmOmRwANz4QLe4cLzVP32iWF1rZAEgDrwjAecanqgwFmfxxpa8YtJx3WG0mZaia3BVLTlnmPRveiyipUieVYtcJD5SjDjMcr/FzPazpc2qFlci0UymfnGpUNg6XO9tGClPeS6ZEXkkk35le0TbHnPDes6i3gaXyly6s7jlyabW6f1Nf69m7Bs95RY0NdSyRg3oYEBHDGANrWC0TAigFxLDMMAoyktNSIGYfFkrJ32q4//M7/rhtDM%2BqAp1ULDMCgo%2BUNMyL%2BXmsEfQY%2B56OkQkAsTfGpCK8%2Bvy9I6d2riu1Pv30XOXxsyuTgeGiqjIk9yyqPZaFc4k5MWUM8gbU3b%2Bpb6mdenPuZnPCEBdAGohooD3CHWsVT4UOlIIuVHW1lcaGwSJKSkQgVX0GFuRUTqPt4ixzNFSyHelpGRhrCrB8iaohcHBxrjO00vLhgcnKQmjNKogyIjgBqYB1ralEFeS9J1UQMxdO3mjs/uSx2cnJ4VLyynvXnQmYlgFNDSjRvCYpIBCDLIEDEEdEVGDmOGdZJIJK3El9gPwXVwaLtPK3Jyf0VgkNHQkso95Kw27mq0xkARiVXqDviaB61QuogJiJjIIIAq8igC6//M7RCxMDQfZnR28OXFvqbgpDU4DCiqrNGZF8R3tEihoyPvNeto8VZyf6ou7RK7WBzKOqClaBwmvvJWHqMfI0WIlSa60s1NPCmjcQAasSk/YM3cN3C40sYDY6WA5SL1Cva%2BmYkkJzIwAkKsWjV%2BtDldjIng3VRScivZdUc12KsPdiVPNsVxSWmIPZ1e6GR4/MTIbGyLfdOX6uFOImiFJDlIHge3VGKCsRg0GaA31olMdWH6lo6IDSQj2JrTGImM%2B/9TV7l/9Ww735t48%2BmDr/TVCnqx3Hj59d3eCV1hlGn4iUAI0gCHkNUEPz0qX0UChBDZEnUDJQCq9%2Bx30brxlL9MdPTI8v1dONAlSdlwKUrORE5lrR1CmLJ5CPQ9Pet7lSu7bYDq4stEYsUQCAlZVUwVAhwyBicDkyrhRZv9xysfPaE5YIK8AKNZo7dlIls9xMotAClci6nsDBa07oE5RIoUwKnllN%2Bi/Ot%2BLdGyrNgXJQEwLnBQAwoMyUS68VIC8aCrTaTf3GR4/M7ay1MvuyO0dnNg2FN1VNZgylzMgMqeeea%2BX8RbQiGuY/CEUlVkHFMg8dubw6ObfaDeGdJs7f%2BpZ3Hnn132i4N73j0LfOr6Yf66R0mzWMwXKoj52aL7/3s1e3LtTTDaGlikJjVY1ENIDCoEfkrmUbhhmGoczsAZNsGy9d/uZ9Y/NTS53gw4dublWiQSJjvYrNsZmACF4A4dzg3okmezZWZgNL7uiV2iCghdwA9IwoZK2nzRpyA8UgrbeTIPUS5iUd9PQhxCpg8cpQMvVOFhUDI8WIs7WmnV6WStKr8zHDnL3ZHhBl3jPZvyhA1whgOP8CzEzUExOJqhVCwMR9n3x6fse5m43ic/eMrNyxqXrFCdK88p%2Bn/EpEPdUY%2B2fgkQY5vUdhYLjQzmTig4dmd37i%2BMJAXzGQUgh1TjYsNPwfvuVdR3/8rzRc3gzv35Nk0h9a%2BBfvG5t%2B3XM2Hn3BvpEbVxe79j2fuT5xarq9MbKmKqDYeS1korEXhKSwIBhVNQIxbJiYQIaBzPn2fTsGz9y/c6h29Gqt9JkTC5ut4diLBiIIerGOuAfIe%2BocP1wKl25ZV26enqqXVpqujwFWnycC1OMsVRSWNR2sBJ1mIqaZSKlX/lEVgeQJiopAEy%2B21nJBXzHMwsB0Ja/YMBRGRK2IWhCom2nhxFSjuq4/Sjb2B/PeS0qGZW27VMFexTqvBREtBUyVp67WJr90frm6d7K//YI9w2dFsEJEGRM5w2tNtUQqIMk9gBFo4AWB8wiZtHRtsT35Pz5/fdOxa7Xy/i39K99x78TJV9wzcXmsP0gzJ8Fi0//Km377yKv%2BF8M98sjJcGG1%2B99SzyNBwPLSO8am9m4onbTMNx7aNXT0tc/deL5StPqBx6fX/9lTi3sy58bBVFFFRYCiKEKoBpRnRxaqljk/fCYvVNVfdmD03LbxSvoXJxaGz0zXt1imkve%2B6NcwXq6gImbAGMAGlN65pX%2B52Unt%2BdnmGBNFqsoKJe/zQ9Ir2OpQOUwS57mV%2BD4oAi95tRtQIYJXIt/u%2BrDeyUx/OcisoTQviqtVVcvMBlBriIKrC53hpXoa3jZZWo5Du2jYpATRntSWoQhUEKv4KqBDU0vdrX9%2BbH5itBrry%2B8avxBYniVCwoYyIvg8eTO9WKhWND9pXhESUUik/Z8/vbTjPZ%2B5uiFJxX7PszZce8ntw8cLoZka648vvWDP8EwxNi7JvK013dt%2B4X2Hh58x3CeXOs/pKj3Xead71lcau9cXz3nRtmVkCu1sGy5c%2BO57J85sGYm7f3Z0duAPvjC7s931E1HARRWNvVDoBaF3GkJh88pzr4TDpEzQYmyXX3H32PXAED5yaGZDve1HiDgQ0bD3QAb4ih7Se/itY6Wl4b6CP3atXhXVgjJYc%2B0e52JHgIhlqBwkIop6xxVBapArhcSLiBdRYmg79UEnFTtUsh3L1CVAcngPEu9ZFUxE8dnZznAxNLh1ojLvVTuaV0VhaO2USCjQQEFR6nTwY0fnx1uJ45ftH5kbLAazHrk4cy2LA56RQbACVhSBFw0NUZh4GfjwU3M7PvbU/PBoXzH5jgc2HLt1fekogBVrOAFRMtEfT9%2B3Y7AO8dr1tP3qsv/uZwzXbPlXiDLHocH%2BLdUF8ZIElnwYcGoNpUrcLBfD86%2B5d%2BLgC28bnD89tRq/41OXt1yca20ODPWJSsmLFnQtW8xlKTBEGhgWJhLvRSaHC7Mv3jeydHOlE3z8%2BPwmAAMiGnkvsSrsWg2WDYSIfDk29f2b%2BxrTK0k0W0urBhrkNIiuSVC8ePX9RdtlJl2sJbYXs4xCOSddkDE0ayVZoMTUXwo7XsTRV7SXUM3BZa0j/RdnWuWNw3FzqBTMQeEMsWcmUpDNKTJYURiGFh47vTR%2BfrYTPW/32MLuDZUzXjUxILDpyWjXcKFXzmOoRuIlJqB4fbEz%2Be7HpnYfvlSrPrRnePW1z954eLwans08GtaaVmC4E1hORFHfNlKYLsfGZalHs%2Bu%2BTVWZDx8%2BHCTe3%2BG8w2A5dGOVcFWJyRApgZUZapkcMSUmMHMvu2P86Pc8e8O1Wjvjhz9%2BaeJL55a3GMaAAgUlzgnXHAjnsyZEyBCrMSwu88l92weu7N/U1zx4YaVy7Fp9fRhwQYEYooFqrjPJdeJQ75Dt3VBZVCKcvNEcYeZCL8XXnIAXUYXrKwbd2JDO1ZNQlVnBhohNrhAjx0Su1vGxMYS%2BOD%2BdPZ/Qo98AAgVnpupDS83E3L6xskiMJrO6vH4uJCJGlYworGUOzs11Jr5wdrlv17py%2B3l7B89kgjqIMmb4tY4h7QH7HDbAiFJomSunp1pbf%2BdzU9tvLncK33LHxMxLbh95Og5p3jBlARvHBG8MOybxILhSzCuj1bgtInBKO/7d7x8f5k8fQVFBfeIV5dhkbKidAz9GYEgNGEwk1pAYgk8zXzswWT35%2BudvvjxUjbM//NL04MeeWthKTAOAFrwgFsqTDv8MFysgEc2BNlZfdufYtdG%2B0H3i%2BPLAQiMbY%2BJYALsGgxmkxpB6CEarQW39QNw9PVUf6Kbalyu3em6YIB7wccDtYkRutdktiGpAvaySmIkANqR2tZ0VIF6rBeqqUi5kAvk1UYSoxiem6pX%2Bkk23jhUXvaookPfsEaSnZmZAbL3tRv/8%2BMJ4aElefPvgeQOsQCEg8QryUBKsgURV60VCLxoqpPL5sys7PnDw5mQhMvr9D224eO/W8qnUy7KCUkOszCBDJsdaRMKci2r7KzYlo4DKQK3eGOGZdoPyriEgNCSWyTGTXysV5OV/eJPTUpm1tpuKNidHilfe%2BILNl27b1Nf9nycWBj/4%2BMyuJPPrWbXiPGIPZVXuUUosRPDM5FnhByvhwksOjMyudrrmo0fmNhBhAKBQe7hQ1mp2AEJjsz0bys2plW5wbbEzbBhFAGEu3WOIqjeGO%2BVCmDZTH3qRmNCTPIgPeh2o0WozKwSGtVIIW2DKegKiXFZBsPP1tP/aYie%2BbXKgVopsfe3xoUJ5eZzU5aRB9dMn57ct1JLgm/eN3Vw/GN0UQJhJmFjXdOsCsBM1zmssqv2Zk/V/enhu70cO3xwb7wuz1z204cz2seJ5ZbNq2bSYKAODmfMEjcgog9WAhCgvo%2BWTV4g5KDD3FyupYSTGMLqZsEiuF3mGTqB8vA8RiSXyBhDL5L1qtxLT3Gufve7y828bah66tBq/5zM3Ni023bhlCr2oUQhrTnqCiIQNeWbyzkmyZ0Pl6oM7BmpPX68VDl5YHQ8sR4oe%2BYJ8Lgyg6knTXWOFmoXi7HS9j/LTaQRqVcUwMwyR7yvYtN5xtpv6opJa9AqjAgqcUrHRzeJKHPgo4KxH0/GaWzdEwfmZTj%2BI%2Bdb1pUVVTXtKBwtVqwrjHBlLFJ2ebm1%2B8lKtcvtkf%2BOOzZWLaSYp5VLa3k7l8cyLGi9qVaVQ77j1f3zw5u4jl2p9Bzb3t/7VfRMnhor2mlOkDGSAOkMQ0xs%2B0BPQ9qpYSiIw7URtrwswAdDmt775rnYY2gvWMpYaSdhOXJFyIlclLyOr6XkwJbK9FF8NUVeJ6kQ0/c37R57%2B5jtGpq8utoPf%2BczUxmuLyYbQmqL3EotqkJffWFXZMa3JHrD6gr0jF9YPFtJPnFgYmKt1hxha0Dx455GOKFORznA1Wtg5UeqcnKoVW10fo9dKpUqc12IhA6UwTTMxrcTHltkQNIRBSNAoSX250cnCgXKQBoYcERmoWupJKjKvhdM3G5Xx/jjZOBgtiOQENCkswAFUCyAtrbbS8U8%2BvTDaX478C/cOnWPDC9ZwyoYkB%2BdgUljvfeS8lkjRt1DPNv7Rl6e3nbvZLD371uGFV983caRYCKYFlBAoA5G3lhwIGYhSgkkV8Hl7CqtX5W7mS8utLDbWImC6uaNgZxkAYtbPWMtoJd5cW%2BwOMYMkR7g9ThBMREw9hW%2ButoazhjtMtime5p%2B/Z%2BTpb7933Y1mktk/%2BOL05Lmb7e1RwBXNaR3rvXBPVylM5IgoKxfs/ItvH55vtJ35%2BPHlDYAOKFHkVFl6hiOmJAjM6m2TfSurLR/cWGpXmJhVeiqynn58uBwlYItm6osKDVTZQChUaNTJpNRJ1QxVgsQyedUezwhlJpiZ1aQ6u5pEu8aLjchyi3N9JYmqVdXAK4qkOvQ/Ty9tXmml9mX7RuZGqnZaVDMi9txLUFXAHhoAFFvGwI2lzvY//PL0trlaGr1k/9j8C/YMHlHVOSZOmMhZQ8705O%2Bk6lXFqYgXkTzAemEo8WIjG5xvpLGxFnFAX/73r9vfYgAYHDR/auFvKiwdvLQ61kq0T4SsgEKoBiog8UK5KhfSMwByci/PfFKv3bu29J/9vudsuFIIDf7g81PrDl5Y3WIMlXyeMdoelgEANUrqvNdb15VmH9w12Hz6xmrp2LXmuoApEs1xTy/OiHPqto2VlivFQM7MtPqg2vsd5V77kw5UgiSwjEbHF0kRePFWRC0R23bii07V9JeCRJGfjl4ItYY5Onmj2a8qeutEacV7EeQN5aykVkkDJoQnp5rrjlypVe/cOtjcs7F0NXXIDDHWWmF722FUEQbM5bMzrQ2PHJpd13Xgl%2Bwbu3LP1soRr7pCoBSKrPdy6DPtzcxQAfm814%2B9V%2BuBQEVLx641xjqpY0iWDhTD9z6D437ttXfNlCL7qzYwuLHYjr98YXm3NTrmve/PREqy1rAmoiK9wmSeRQsZ8kHAmTVwAm1vGy%2Bdfs0DE2cq5QAffGJm3RfOLO8wTAMCiqQnqCHir/DyQOsFewemRqtB9smnF4ZX2tl6ApUEEiKvULOo0EDZ1jaPxK0zU41yK3EDRBSAiYhIvQLVgu0GRmW17WIQRQQOFAhVEbYTFxMRKhG3vRdSJQMmo4Kwnfj%2B8zON8sahuDPaF9adKikLQdVCESg0qnf8yKdPLo0PVWL/wtuGLjtFzeZNRZYIOXZlNd5LgYH%2B49fqW//k0OwEqfKr7p44f8fW6ped8gwTOoYpYaMuP9C5pFAV%2BckmMoAaEQ0ykZig5ePXVrefnlqtBHGEYmj/4OE3HfjS/8JV3j46%2Blux8Z8K4ogOnl8e%2BNKF2m4AIxCKMlXrvJrMay6BE0DBrF5MniIrEUHZkEuddscqwcXvun/85PhgMfvI4dnRx04tbWfS/t4sLRYVVlXqzUhw5ThYevFtY/PLrdR87tTKKBMqUISSa0KMQElEO7dMVJZq7SyYWu72BYbMV8poqqGhbiGwrt7JIqhGULV5eFaz0s5CQ4ShUpz2KhKsmrd6Ty8nlZlaEuxZX2lZQ44EnHsusBe1DC587szq%2BuVmZl9029DNvoKdy/uTlVnZqIIFuT7FMFefvLy69QNfnhoNLfQ7H5i4vGM0Ou09NY2hDMSe1k4aPLz3JFASr8YLrIgEXjR0oiGplE5PtXZ98dzqBIchRSTH11fin%2B1xD18x3E%2B8ZrIzORS9vmD8IdiAHnt6YfDTJ5Z2dZwbFY9y6qQkqgXvNc5ytiMUQ5Z7n8F5JuiJkTnRdKgcXPqeh9Yf3zlRTj7x1M3hTx9f3GaZ%2BkU0dk6tz0vhCqbMKbV3ry/dvGNztX3w8mp8fqY1bg2XIBoqQCY/VX7rWHGpGLE/Pd3sY2i8Vm9TBYeWk2JsXb3rbU8KCFVlIgpqbR%2BzMb5YsJl4ZVWBeFEG6Oxsq1yMA90xUVn1op4YhLxLx5BqcO5ma93hy8vVA1uqtT3rS9cyJxlRLkTStQqB08gQ9R26tLrlw0/ODA9XIveaeyfOrRuMzzulLrHqGkbL65GwvY4gFg92Xtg7CZz3BS9S9E5Gn7hYP/Cp4/ObHQzHjKtD5eB7/%2BsP7J39K4ewfenD76h/9w/%2Bu4%2BvdrIDjsyWGwvN6MZid2iwEkQDZUsiZKAUECFXRhFRj%2B%2BTXJiz1hvGqiAqGG7sWF/uztaS4UPnV6peUdk6XspEJSUmYVrrnYKCSCYGAnNqqtF3fb5dvH1TX2bYdECa9bQqXAwtbix1By/NNkt3bBloM3MLqqo5BRVcnO%2BM1jpZePvGygIRsryajcLx683xdqbm/u19c0xIchet1Emk%2Bhcnl9atGyomz9o5MO0UKRFp7hHIdhMd%2BtOn5rYYJn3VXeOXo5CXiMgzk%2BYnDQaQkAl9h67Utn702NzIeF/svvP%2B9WfH%2BsJrokgMcUYgYQapIlRohJxYt6Rgp0ROhJ2KBVF5vp5u/vjxhX3HrtWGyUYUGzkxVrDf%2BVtvPnDibyyk/txrdk2/YLL48sECHrYB5PJiN/7AF6a3/sXxpd2t1I0xaex6x9mLBM6pUa%2Bm1xJAeZ6nzATyqggNbr7qnnXH927u73z%2B7HL/x5%2Ba3QpQFQoroqZXEBMR7wZL4cJzbx1aubbUDh8/uzxqDcV5yo%2B10SPZretKtZVmaq8tdiqG1EovQWEiGSjaLMnUJA5BTmaRZl7NcqsbFC18FBgBmEVhmNjeXOkOLLfS4JaJUkNV0ly6kFNbxnD8%2BKXahqnlJHzolqH5asHMe4HrSdsBBYmIZebS4xfqWx99amFk40Ax%2B%2B4H1p8ZKpsbKpQysSipASEQRQjRwIsEXjUQVZs5CZ2XgIhM5nXwiQu1A398cO62S4tJOQgD9Mf8vtsmyy/%2BzR%2B64/jfqc3qDa%2B4tUHAj/zQu578i4WW/78Sz3u%2BeG5p4MJMs/SsW4fm9kyWbjJz4h28Gu6wqjIbhXpCXi3M%2B/iMQDxlcWiuvvKe8daHD83c/emnF/qJeNfL7hi75rysQqmZT%2Bwh77x279zWf%2BPMzWbpC2cXq7s3VoZHq1HHi2YiEGFxW8ZKy5VCuP7szUZp94YyZ94z5UyFVAo2baeOW4mLCkEAhapXoJ0oT/QHCbOKywVPMETByRv1akCQHaOFms/Ff6Rgay1oerk79vjFlf69G/s6d2zuu%2B6hXSZILvVUUlUbGKoeuljb%2BqmTi6ObRorJq%2B4aO9FXMDdF1K/V8CgX5OYdK0osAhJVVoFVUiai0sXZ1rovnVuZnFpKShxYhKyXqnH4H//HD%2B/7w79uHthf2zugAH7rTXd/5L715YeGi/TLhUJQX2hr%2BCcHZzb88Rdn9k4vp5uNoQEVipyAnPcsSqyAcaJWxFt4JQY5BqUh0%2Bwr7h4/cdf2/tYXziwOfPLY/DYi7lNFTuXmcjrHTLXn7x6aSZznTz29OKGEPq8arPV29xeDxrbxUufSbLPU6voCcZ4%2BA9BqwXa9E2p0sph7BaJ24m03Ex4sW5ePXYCFwrYSV7o43yluHit3BstBK0%2BWQJSLYSufPLY4QaL0/FsHboK0RWvSQFUW8WyZik9cWN360aNzoxsG4%2BTVd46dqMb2uggSMLm1gcC5R6DAi4aZSJCJ2kzyRsfVth/782ML%2B//44Myu68tpyTDSSijvnhwMnvO7P/TXG%2B3v1Nj4E7lQ5T/8hw%2Bce/%2BNpebPtTvmFWfnktK15RuFe7YNDN2zcyCoRJx4QSLeG2JemzDSU8exsCERBw4tz77ynvXwenPvx4/NVYzhyW%2B6fbiVOG1oPiBGssz7DUPx/EO3Dg9%2B5tTiwKkblYm9GyudzIkDyCtRd9tYaenUjdqmqeVO35axQgOkcF5RDEyqCjS6PlJVQwp0Uh%2BlznNfMXCZKntRtpboxnzSv9L29oW3V5YJ6nKiQdgwzJOXa6Nnp%2BuFlxyYWBofCGZSr2IUpASjosYyhYcv17Z97Nj86IahuPPyO0cOF0LMZip5UTGXlsDnQI0FPlABOclLdWmiAwevr2x%2B6nJ9ZLXjgsAaFEP93Ggx/MXffNP%2Bz/yjthK/7bt2HSfgO97428e%2BtZXiF5NM9j92ZrF0/Frtlvt3DgzcubXvSmhtxzkPMpQS4IjZQwHx2psdCGeYZ15x94T3ogc%2Bd3pxqBSb3fds67vogDoxeQIkE0ru3zU8c/Jmq/Sp4wtDW0aKtciarqh6l4lsHo6XC1Gw4fJ8t2/HRGUh1VRU4cuRcTYwutJyERGzkONW1xeYDVWLgfOZEqAMpfjcbKuvFBrZMhy3Eq9QUQYpNTq%2B7wtnloa3jpeSB3YN3EiddxAiIRgRMdZQ4diN5raPHpsfmxiIs1ffPX6iWgwuOa9kQLmE4xnJhBoVkBexCmGvKFyYbW944vzqhhvL3ZhMhDCg6aGi%2BS8//qz9v713L6X/JM37CuBdb9z/0Xu2FJ8zUOBfKEZ2pZ6q%2BeSxmXXv%2B/zUnednWrscoey9zxXLeQMxfWWoGYlCNDRYeuVdY6e3jJaSPz04M3ToYm1zFHDsNU8wRbwWA1p5we7B%2BeVWag9eWB4PLGLJy/%2Bmv2Q66wbC1rmZerWdZOWepMHEIfnIsK91soABAxiqd3xgGFqNTNJrV6BO6qMLs81480ghHSjYjuQjnNlaih6/uDy22knt8/cML0QGDVVSZZCQmtCa8Pxse/LPjy%2BNjVZD98o7R8%2BVI3vTZeC8fpmzu156EwcU7KEG0ML0crr50SPzdz56eH7bTMPHccTJYAHv2D0R3//utxx4%2BO9jtP/tWV4/9tKddQC/%2BHPvP/WhG6vJTzU65rsvLXTi60vXNu7eUB188JbBq6P90Zx3vqMKYmMcAwTWNW0Jx6Fdevnd42c/kMktHz%2B%2BMFItWr97fflq1/mEiZyHtvduqF4/vbHZ97nzq5VdG/rHxip2zqnXwBrsmii3Hz0yU7mx1KluHIo6IHBkWSoxu2bHBUkmETFLrZ1FxNBSMfC9Jnw7tdItLTVT89DukRUlzUhgGGRuLCVDj59bKe/ZWG3uGC9MpyIJM%2BBV2RLs5cX2ho8cmV9fiYy86q7xk0Pl4FIq4pjUSg5rmIhJvFonPmSmsNnOJg5eqW0%2BeqXW302Vg8CiFNJnxqvRL/zq9%2B3/4tdkJNR//ld7Tr33h%2B947eRg/PL%2BcnDIBCFOTDdL7/vc1C2fPbG4r5m4jWyorL0GP%2B806IlHGURSDM3Mt987dnq0GmYfPDg3fnamtTlgLkivz9%2Brdh/YMTjnhfSzpxcmrKGqIY6813DLSKnjPfTsdKscWMuiZIKAdagcuGYipusRe/FRo%2BuCQsAaGVIQGWYOLs60igGzbhmOG15URYmJUfz8qYUhZqbn3jo857y2IRBRwBAHN1eS9R88ODNpDevL7xi9NFixV71q2hv%2BzVCyImqdV0uskRNdd%2BTS6v73fnHq9sfPrww6GC4X7KXhYvDGV4xFL/mHGO0fZSazAvi1HzjwZ6979vrnrxsIfqQUmastYfPZ00tD7/vCzVtOXG/sVegwSMMMsCJkvPPk8xzfl2Mz/cp7Js6XIiMfPjgzOrOajgaGA0GOE8f7w/qzdlQb56Zq8YW51pA1CLxI0Fc06cahQnp5oV3yHmE%2B44IwWAldM/XcziTIvJpa13N/KXRRaJwoOHMSXJpvRxuGCml/0Xa8gKxhOjPdrJ6baUTP3zuyOtYXLWZO2UveULnSysY%2BdHBm0jnlV949dm18ILrs13p1QCxE1ovP638qlbPTzVsfeXx23yeOL65f6cCGhheHivyfH9gy8OB7fnjfu1/zmr3pP3Tf/9GGab94/0TrN35g38O7JuT%2B/hhvi2JTm29p%2BCcHZ9e//wvTd11b6NwSQPtVXOjy7A4MQJR5oBTOv%2Bb%2B8WuWCY88Pr1hvpasJ1BRBAVV8HNuHVwZ74/8p5%2BeH2p3fZ8oTGjZ7dtcba%2B003CxkVZsnstqITAuSR2yzFvxEjU7mSmHxtt8hoKdqyWl%2BXpqb9tYbltSFVHT6GTlvzgxNzDWF/t7tg1MOS8pMYxC41rHTXzwielNq21nXnnP%2BPSGweiG87kgCQTrVCNxUmKgf6bW3f7hJ2fv/%2BATN3ddWUriwFLWX6D3bh6In/W7P3THf/zxl2%2Bb%2B7qdgv7W19w7%2Bz9%2B5K6f2jgQPrca4UPGqF5c6MZ/9KXpLR87unTbSkfWBcwBuJdtiVjnvY72RdMvv3t0utYR%2B8gTs5PtTIZCS5YMcyGyyT07Bhvnppvh4Sv1gTi0holo94ZKR1Vxab5ZNYzAe6U44CzNPDkvEYConXhTCIz3IsYY2KsLnUJkodtGi22noMBwcPRqfXBqsRvct2Nw2Rp0pTfLWxTVP3tqbtPUYid62f6RuW3DxetJpqrQUFRDLxoytNjo%2BsnPnl294w%2B/fPP2U9PtfhiDakyf3zRSeOn7f/Su7/v1N%2Bw794%2B9z/9kF0Yc/Mg7Z0994l2PvOA7/81RUd2aeNpwY6kbnZ9qDDqRyli14KOAVYCAQdZ7MYOVqDNUCe2RSyvVlUZW3DvZ14VCUqc0UAz8taVO6epCN7pzS38aWJIoMOb0dKNYa3m7d0O1rkCWOomOXV2tTg4XXBAYPXy5VrxtsppMDsedzKt97NRSdbAcyj3b%2BurioY2uL3/kyNzgptFi%2BrxbB2e8khMVw0TFTz29uPn0VLP0wr0jiwe29F1OvLg11RYTGREMnLxR3/Xnx5Y2n51plZUDKoV8brhkf%2BJH7z3wkz/40vGL/7%2B8d0AUePgN%2Bx595d2jzxsqm39dLZobbWHz6aeXxt772NXbT12v72DwAIGKIA4yp7htU%2BXmt941unLmxmr8J0/MrHeKGADCgJOXHBhd7aYZf/HsUr%2BqRqSi20dL6Y3lTrjSdrEhkr6iTS2TNjrONDreZM5joBQIA1xru/D6UsdsGS4lhgjGIHr8/Ep/M3H0ottHVsKAnEICZip99vTSpkOXVqoP7hps3LNz4HImlCqIRJUJGl2eb2/9oy9PH/jokYWJpbbaQmjmB8rBz%2B8aKj7rnW/a/9677vqHz13%2Bmt47AAC9K7t%2B65f%2B/Pyj5641/s2q59fPNnXwQ0/Mrtu%2Brtn/nN1DKxuGoyXx1E0TLwc298/Nr3TCTz41W64UzMiL9o3MZ6LpttHS6p6N1dLnTs4X9mysFoYrtrVtrNh%2B/MJKcXq1Ux4qV2p5sU3QzcR6n08jCi2LF%2BZLc%2B1YAWwaibteBYtNKR25vBLftqHSHa9Gjcx5igJjj1ypjX329HzfbZv6ug/s6LuROkkIoMCQma%2BlAwcv1dedmWr0JcJkoZ1qgd67vhL911963d6L%2BCoti6/i%2BqmX7pwC8JM/%2Bp6nfm%2Bh6f5DO6HvOj/bKd5YnIr3berru3tb3%2BJQxdY6qXPP2zs6106FHz%2B3WBkfiOX2zdWZTpKl92zvXz56eWXii6fmqq%2B6f12ycajYHukL09PTjcqe9eXYMDi0rO3UmdQJxQFrIWSkIuHpqXo0Wo38WF8hJRLzhbMLFUDpObcMNlLnvTGGz91sDn/8yPTAzvFy8tL94zdUtcOkYTtF8ei1lfVHL9f66wmMNYRKTJ8aiPitb3/z/sfxVV4WX4P1G6%2B/4zQB3/eWdx/%2BvVqHf7aT%2Bhc8cbFWPnW9Vrh/10D/Xdv7V6OAu99618RiJ5PxDz0x1RdFm9KtI4WF8T7TevCWgc6Xzq2UH6i5wsahuLF5qJgdu1orNjq%2BWAyt9JVCqXecWah3iUk0DiyaHRfNrXbDfVv6u1HAuLrYLR67uho%2B79aRznBf1Em98kwtKX/oy1ODfYVAv/WuscU4QDfzVDo13Rw8dGFlYK7uQ2MYlVBP9lXD//SOH7ztQ0Q9DepXeTG%2BRksBvP0Ndz32vh858M3rBoPvLhf56ZYY84nji/1/8Lmp9aduNEZUib55/3ijGFn/J1%2BeHmx03SAz2WfdOtruK0XyFycWKk4o2jFRyZptR9cX2mVmBEPVSFIPrLYSjgIjxkCuLrRs6pRuGS97gYSPnZ4vFcNA7tza38mcM82uqz765NSIMcC3PzC5Uo6C7NJcZ%2BSPHp/Z/LHDs2OLLYTFyFwfLuEn7t1snv3O19/%2ByNfKaF9Tw32ldZncwz%2Bw/wPP3z3w0ETV/Hwp5sXpugs%2B8OWbQ3/0%2BPRYO3Hh9z57QxIY0KNPzgx3U98fh1bu2znYOXmjEZyeapQn%2BkJXilnO3WyUvEdcjENtJ57qHcfjfbFWI6YLM83AGpaBksXxq6ulszcawbNuGe7EITsnWvzEsdmhpXpqv%2BvBje04MPjYscXRP3ri5viVpbQQGG70x/i1WzaUH3z3W%2B781X/7yq/9ddQGXyfrY7//35MjH3vH51/12h991ANh6nXX7GpWPHl11cYh0x1bB/H4%2BUU7v5oEO9dVspFK6C7NtaIrC217z/aB9nLLBdOraTBcCe3UctdenWtxre1QCA2VImOPX6uHG4eKfsdEwX/40ExUKUT6kn3DDWsYnzuzXD18aTV42R0TvtFx9CeHZkvXlrPIECWVkD60eSh8w8NvPPB7n3vkN%2BpfL/v1dXud9E/83tN3ztQ6P93s%2BJelToKRSoQoYFyebeGld4wnL9w/Wj8z1Sg%2BcnCmtHtdOZtZ7fJ8PTP5MC/tSf/yDlfqjWAcrkQy1h/5M9NN8/K71jXu2FRsHL/RrP7JwdnS%2BsGYGMCl%2BTYiy1qM7OcKoflPv/uv//Huw/kXYbi19fq3P/Xziw331iRLxHshSyxxaPCi/ePJ9aUOH79aD7wIFyODgXKYDZTCdqXA3VJoXK7lEFNvu2i55YorrTRoth2g8NvGCtnuyWr22dOLca3letMSkV%2BeWuJ3/84P3/km%2BksDcb5huL/H%2BskPnd9w%2BUbjE53E7RkpGz9cDtJLs62o6/KBUs4LVQqh7pwo13ZvrEyvH4znC4GpKyOBQrxXm08c1kCEy0vNdODsVG39yRu1wflaamGgDEYcMLaPF9Nm25ubjSQohMHUpgF%2B2X/9/juf/obh/p7rkUdOhh%2BeTT/QSOWVVjP9trvWXd80HM/OrXaGj1%2Btjy03nd0wUmzfPlmdGqkE06JU9woHqDNMGRN778Ur1OdDkjSwRDYw6G8kfvLE9cbGCzOt/kLIctfWvpX1A4X6bK3T98FDNyc6znA1osO3bxt90U9/y6aVbxju7/Glvvc3Dr%2BtnuInncvwrF2D8wc2VU6IoBsHxoNRsGxiIm2paEvzMRsZSD0TO4BcPgFMs3z%2BoTAhb1oR0lgVRUMoe0GVSeFEXeaUQYjPTze2ffrU0gAHIZUD/e3f/5E736Rfhw7TfD0a7o3vPPba5ZZ7WzdxvHdDtfngjr6nBFhipq5AMwZ1AGqCqEGG20SUEmneWNgbFpbfN6H5dKjexUbETFA1vWluHoq2VzRFqA1oWxTJWF%2BUOtXy9YVmlCkOPPSqH7155GPveOrrbY/46%2B0L/cR7j21ZbiZvS7w34/1xeu%2BOgdNOtNbrJUuJKQOTI2iq0BSiqar0OrPyATBQGA81CliRXHzqBVZUjOYDGwBAlZERcVeBtoLaDLQTL6t3bu67unGwkGSZ8Gon%2B6Wf/sDpvd8w3N/Epqjy9cXuf%2B6qmSiGrM/bM3C5HGFGOe/UNtybwA1gTeMPaECaNzCSaKiiAakahhioBgQNAY00H%2B8bgjUk1hCEgAELUpvPB8vH1xqQjyxWXrB7eKoSGd/JMHRlrv22f8jNU/9suMq/br3lHQdvSxy90rtMN0wU0lY3CS51s61QiJJ6JutN7/rSfKYAk6gSRJgNEQQMIkeELL/OjIhU8iGxtKbXIiaCgZJRAL07dzKFengYYjIiYlTUTFSD5MzNdqGj5sUHDwf3A/j8Nwz3Vyzv/Dg4KjAJLs12okuznW1rY8KIn7kbDl8RFf9l6gzP/DfqXS5BRGtDpnryEP3/5GP0zL%2Bl3mQvEYHzuUqIScFMMGFsoMnGb5y4v2YVxHw5Ivc%2Bsvwconywy9oVi8rkeiPTTL7Fih5BQs8MrCGCEkx%2Bm2o%2BbJeQS2Ch%2BfU6RMgvIBElMvzMbYGqms/mZYhlAoE1nyXHxvjuwbLVT38DDvzNcY5%2B7N0nRj1lJrT8zPdLNPAAQFHCaANAB6EtUWCYOp0ObBhpVzIOKTAkGYtll7SNRwFAp4PMRVoo5J8VWqbA5J/tMqa131EOJHW5Yj%2BIVKmZsufQ/Pqb7pz%2BWlYC/qr1/wL9Ptz8f0d5rAAAAABJRU5ErkJggg==%22 x=%2220%22 y=%2228%22 width=%2264%22 height=%2250%22 opacity=%220.16%22 transform=%22rotate%28-12 52.0 53.0%29%22/%3E%3Cimage href=%22data:image/png%3Bbase64,iVBORw0KGgoAAAANSUhEUgAAAG4AAABWCAYAAAAucqM7AABGFUlEQVR42u29d7xd2VEm%2BlWttcOJNyeFqyx1S%2BqW1DnY7YiNbcAJDAzYBEcYGJjHDEMaeGbmvcEww4OBxgEbGIONaWyM2wYHPG7HdksttaRWzule3RxOPnvvtareH/vcNvN%2BxAFsP/D6/e4/3Vfnnr1qr6r6vvqqFuGf4XrssSvxZztZiCTgkazlfvQ1e5v6z%2BwZ6Z/DQxw%2BrMFvP3nyno53z%2Bsm2V3Ouw0KjhVkiDVllTkmOhUF5jND1eALv/4DB1a/Ybiv4fr1Pz8fHb7QeE0rdW9JndxtbBCICLx3cKIgAMYwmDh/VM1grblQCoP3bx8wv/XW1%2B2f/4bhvsrrh991dP9CPf1vqdfnewWyzMEaQqVg076i7RYDIwCQODGNxIe1VhamzhEzw9oIkdELgxX6mXe%2B6e4PfsNw/8D1C%2B87PHxzVXZ68Kh4iWBMO7R2eqLYufjW195XX/u9N7/9qZcvNLJ3OtUx55wUY4tto6Xl7ePl6ZH%2BcKYaB8vGQBhQ55WTzFdW227synxr8uT12shCPWFrAjaG/Ghf%2BDO/%2B8N3/rL0guA7Hz1cfHom2NZOs01etcKWXBiaxUj4wm%2B%2Bad%2BUfsNw%2BVJVetPbj76g3nU/mHh90GV%2BHZgtKaBQMDQJLF8rRPyZvqJ5T%2BZ5bL7W/aPMa0lFdOt4uXX/rsFTk8OFM4a45UVSEUqZyIHg1HtVUEiG%2Bgykb7Wd7Tp0fmnnk5drZe%2BVoziksb74Z8YqwaPXl7rf10qyl2TOb1WlIjGDiEAkQqCF0ODIUDn8g%2BfuHf7T1zww2fkXa7j/43efvuXmavrLzcS9FGRMlmVQ78FEIAKYAAEBRLCBBfmsJQoRkgoTcO/24eUHdw08YZluKHESWEoJlILgSEksQ5wIERmT%2BazoFUWoVi3R8PGrq7s/9fTihtR7CgPrDXMn86aSZRkIAsMEgkJUIQqoAsZYWEMoxfZgf4V/6uEfOPDZf3GG%2B76HD7%2Bi0cx%2BK1MzkWapRlEg64fizsb%2BaHmkGjZDyz4TNUuNbunyfGdgeqlTypyyZYKo4P6dg7UX7h05KKBpNpRYw22FpkzIiMgz%2BJnnU1VSiPFOQ68%2BypyGYWCGjl5efejjxxdGFUqiIAPSiYE42TxaXB6pBCuBNWkqahqttHpjqTNwbaFd6mbCQRCzZd8eroY/%2B%2B43H/g10X8hhvv%2Bh4%2B8arXlfj91UoSKbh0vd%2B/f2X91w0DxCrO2ASiBFQTPpOQ8KrOrnR1fOrc8eXamFW4ajrPXPrjhGBu%2Baq1pGZaEYJsgzZjgiFQYDCIyACAiCoBEYbyqSTNnM68VUr31E0%2BvHDh6vVbcMBDJs3b2z20aLZ2zhpa8aAKFMIGZKFRIZb6Wbjh8aXXLqel20YtyFFmMlvln3v7GO/7LV3sPzVf7D/6bdx/au9jSRzKv/QroA7cMLr7k9qETQ5XwmmFuGSJhIiFSZVIhYs9EWX/RZhuHC%2BHTN5rVamzcXdv6bzChbQxnhjhjpowtiyVSJsAQGEYtgwxZYlWyYDBEQQQoccCkhZurybrplbT4LQdG53aNFy4o8RyppobJGyYhAhgsBE0rBVu/ZV2lXS3a%2BMp8q9BNHXUdHnro1W8%2BceRj7zr71dxH/uoyGmrn6/TLTmhUoPLQrYO1F902fCgMg2vW2K4NGFFoJAxJCpF1cRS4IGAXWPJCcNU4aKzri1y948NuhqqxxjAAIigAWEABATMTEQyBjZIGJBoTa8yKEAxmMAhQJTKzq0lYjY0fqwaLAm5apiwMbRpZ46Mw8HEQpkHAWWBtYgy3wTxz7/b%2B49965/iCIdI088FiI/vVX/jQxdF/tob7/dPHXtz1%2BuIsS/XWiVLy7B19l0W0ZQ3UGtLYkAYERIbVMGCIEDCDAARMrhBSc7QadhvtzNQ7rmIJTAbKDFgGGYCtYcuE0DAHljSwhIBIA1IKoBpaYquk1jI4SaW40sqiSsF2K4Vg2RhOAyYJDUsYsAQEDRhqA/ahNT7/f%2BTSTNr7N1Vu3L%2Bjv%2B2yTFPlLVdvLr3xq7mX9p/6D/zmIyfLC11XLJfKOHJ9%2BY2ixMU4lOftGb4ZBLwKYg6YwQbCIJBhgQoZAMwMr2IQMImXxBAvT/SHtdRr//RKp7B5OEKegyIgJhFSywCYQQQQhBgkPeepFoYJqgETgZnClWbat9p2dstoaakY2yXvpcvMnghkiARGVMHKAIQVhsiLkLeGvPdaf3DnwNSZm83NC/Usaht%2B7a985Oz7M1%2Bul%2BJ29m9ftrP%2BT5m0/JMY7kfe/tS%2BWoZvS72/%2B39ebewwhku8mFHqZTR1Tm9dP9gar8bzHl5CQzAEyuMaCyDKBAJASsJMIPJMHpop1I9Uo%2BWAdXKpnsREZCEaKBMDygT1TKykIDBABlBhpfw0GoUaUVgiYstq5xtp1SuwabhQt4SWB2dM5LmXshEDOYRjYZAXYVYDR54soFm1aJf2b%2B7r/9TxhZEk0%2B1HrjQeV60nzrn0Vb/yxHRs%2BIlSOfjYO96w/8tEJF%2B3hvvxdx3dM9/2PztdT17uyBZFFaSMVBTiHQgqkTXYNV5uMKtTZWbAMIOZWdcSAQWUieDVK5QVJMqW1XvloWq0GgdW5htpUUAFgbaMKINJCQQCFAyQKgMAE0EFqgAITF6dJQIDHC02XSlgYKQa1rzCGYIHiSdiMAMkDDVMgJB4gAyERIWZPDE09YrJwSiNQ4PMCzU6fpwIgAJeZEeH8dxG0vmJf/XrTz72b9/z1P/9/7z%2Bjs99XRmOAHz/w0%2B%2B/spK522CYEg8EAVeRwcKyVhfmFQKQcpQbiW%2BeOp6I7w03%2Bzbt7k0FDCtkqE2ETsiJSYoEXkIBIAwWISgRAyvQgDQXwybg9Uom13pBK2uxHHIRnt2YSISqLKSKIFIYYmJlSBQ9aK9l17BSlpYqKXFYshusGyXFRBiKBMLcf5MzPmXgLDmn0xKDIXktIAhDs/PtMuiiv2b%2B7qVglkS0a5zWlhsdPvnVrqFZtfbZte86JpLH3rDOw7/t7e8%2Bc633kWUfc0NRwBe9/CTP7vcyP5T4pSAVPdMVpv3bu%2BbnugPlyzblAhkmQqBpWEAE1%2B%2BsFy4Z1t1cOd4qeE0P3G9zFChStaSU1UVISGoKoQMMZQEASMbrkbtG4udwZVWWlwfx6yqDBCB1vJLACBVKJGAACFmJvFCDIKHcqvrysvNNOovBmklDjprp5MZ4Bw3kAJMKgywMLOK98QicAJYZp2rp5UjV2rlTcPFzivvGDkhwJQXdIjIQnVgsZGOPnFxZcvTV2v9na7Gy%2BCfffi3nhx%2B7DH9kec9j9zX1HDf%2B5uHXrvS9L/ovKBYCOR5u0euHdhUOWsYLRDDEAyRWhCliVO6f0e/PXG9tv5zp5b6to2WisSoi0rIQqlhcsSAerCSgIh7R4hVvRAIpIAf7YsaQjy40EjLG0cKRpU990yWe0k1UBAReocXUMlPrABERGaxkZUbncxsGy93woBS8QoGoAJWyo2GXpKjJCRewQRyYFKIMhA8cXFl1EP5oVuHL4L4qoK61mgmohBCd7gSzr90/8j89rHSnk%2BfWBhfaSXG%2BfDNv3vi4AyAt37N4MC/%2B8MT2xot%2BZUk88yW6FvvGL/04I7Bp6ylGhmThoaTKOQksLbLrG1jqL5uIJ69b/tA/dRUPT57sz4WGo4ADlVhvQIi%2BdlhZcNgywRLEJNvopL3quv6wkZgGUstVzFMERQkCkBFFUogcB7u8kcUZQJYBVDN8bddzGMkrR%2BMaqxIwYBAKUcfygRlytMTomfcMAxIjWXim7V07NiVWv%2Bt66qNnetL54nRDA11Q2vSMLRpFARdYzgxxi7ftqly6lX3TFwuRSxJkmojoZ/%2Bsd898dyvmeFuziU/oWzHANX7tg8u715XvJipF2sYsSUNA4CJ1VqSwFoXGkoE0rh7%2B%2BBCuRDo50%2BvVEWpBIXpsTisvRCUU4xCCjVQMrkvBIggAyVbKwRw87VuCaqFfINBzzB4%2BozDVFXJa6iQnP5SJUDD2VpSNYYxUrY1p%2BK150b/MhNIUAVUBQpVJShYFRZMlS%2BeXV6fOKUHdg7MB8ztwBpvrREmhjGsgWENA6uhNV49WptGCpdfvG98MQitethorpH83DsPHw6%2B6oZ789uPrm8m7tVZlmHrWCV5zi2DlxScWUMUGIPAGjAzjCExgFiCN8RdUeoOVezig7cM1S8vtKNTNxqjlhErNCBlwyBSEg/OWX5m9DwuWWJmAahaCNJqHLiFRhp2U4kAJShZVTJQgJg8ETkiFiIWyl%2BAQJ1GUA1FUFqoZ6UoYOkvhon3YBDntItSxoRUiVxufyaGyTMVVcOklRuLna2nbjYq%2B7ZU69tHC1dUNDPMwpxjSAsQE2AMqWFKyXDLK9Xv2FK9dvumaifNEm0n8pyjT%2BHZX3XD1brpSwU8qoDeua1vqRzxqjUKy8zManJ3gxxIGxIi8gR4BjlVbd27fWCuWjDyuTOLg0IoMTERraUIJAA88gwTnMerHFcTcRyadKgapvWOt42ODwFAGawkeVTSPKMRqIoKeSjn/1wtmLmTSbRQT8JKaFy1YFPNw5eSgUBEoOoJEIKBqrJAGdI7bUqVgxeW14kq3799YEYIq2A4y%2BQMoIEFrAUx9/wskximzDClqrR85%2BbqfGhZldjWE331V9VwucuiFxERBsuR2zJcmHNKCTN7Q6RrP4E1ytzLCAA1hsQa8gqkgyU7t29z3%2BqZqUZ85kZjyBpiJ0ICgarmMUqVAFLkMKFXmiNlhhupRO1W4nipmRaNMT1/xtr7gj3mJP%2BnrCAva1BAqNZ2Ua2TmtFq1AkDbhNBAFUIAM5tnFcTvAGIVTT0ohGxBteWusNHr9bKu9dVGpuHCtfFIzXIXTMZElKSvLqRby7l5UQlgnhRP94frqzrj1NVQeZx/yOPnAy/aoZjJojqLYDHxGDUrRSCFRF4AwhRHkTyHxEiiCERhtdeYcwTcwqgfv/OgevVgtUvnl0ayTJfEVWjqiyqVgWB5nFPFT3WgZRU1aiAB4um47zSfCMtSX5ARHobqAJW0UAVFkSkyHNOAZRAptbOyl6ZxgbiNhO1BRAlyhMXUobCKMGowohq4L0WRLVAyn0HLy5vZAI/dMvQZRuYWWZOVPNMllUZnGNRQ%2BRh4BgQZqMMMDNxHJru5pG4Jd4jc37z4cSP/pPDgXf/6ZnKodnkwW6aftNq221NvWK8L0oDCxJPpheCBPmb5klJwAphEOW8oRCMWq%2BaeqGRSrywf0tf/Ynzy4NXFjqD28fLi17EGkNe85dWc/AMBsCkMAywCDBSDduWIXOraYEULABIhRUMcJ6MkIKhDCISNUxwngmk8/U0BpgGy8GqqCZ5/S43ugiYWIlEee3UEYiZNJipZaNnppqVnRPlxuRwPO2ceMPkiaDMYAI0j4sk4DzTUoJClUEUEKkBIKMVm0BUVU11esn90usfPvLR0ZHKZ/7La3Yu/KMa7lc%2Beax09Jx/0ycutl7vVfY4YXiBgqBQsQRUiAjEaBEjIZAngihDcobBaO7FBAowCN4wpSKK%2B3cMzB29sjrw5fOro9tGS/MKbYiQY4MsP225emHNeKowAkV/KeiUIuvn6t1i6rWoqh02gJAaVpABkxgAQqqAqKisgfL5WhJbBobLYV2JvOkxIoZyZ0kEJjCJivboq4CIqgcvrEwkTvS%2BXUM3iLTNbHJXzAzm3GIEGIgwEYkTMBECgsYERF4kNESB5OhCVZXaHt/T9fo9tRsr177/4ace2TRu/vtbX71v6h/sKn/8947ueeJE8slmV3%2B1nfk9TgT9Bcp2rS%2Bno9VID12sVa4uJuuigAtrn5djYdI8xuSyHwAwvYSbDYlh40Dk1g3ES/u39LVO3WyUry93Roko9KrGeWXJ3R5UkH8GYS38oBzZdKgcZLVWGnUT6QPBiMJAxQo0UIIhBSuUVERJ4QE4JxosNdK4GLHrL9kmBNI71c8AeEA5D8u8Jn4IF5vp6MmpRt%2BuddX2jtHCnPOqRFBigCE5HlHJa7gMQ0QGBANQqKBYQCEzR0stN/z5c7W%2BYsg6ORhm/TGyLEu11fWbVrvy709fTT7/r991%2BMX/IMO94V1H908tuY9lyg9mPpXJ4bjzirvGL7zuofWHvufB9Qdfcfe6ywD0I4dmR5ea2bAhClUpAhCsxeXcgnmGtQaKSZ7ZITiR9t3bBuYERE9erg8ZUEAAicCoh1GAVYUAUtE8yJOBhAEnI5UwqXedWe1kRdM7KALuvR6kRCRE5JjgBBBR1STToNZxQX8xSIoht0TFkaqjNeyfnzYmgL16I6LGEEfHrzeGmqk3d27tnwGwSkSZQjwRCxikKgbMhlQtiK2IRlAKoQhJEBNp3E1l4NEj8xP1jgu%2Bef/4je%2B8f%2Bz49zwwceQ7H1x/Zue6QsOniXYy3TJd8x980zsPv%2BJ/y3A//f6nx1Ya6fsypc2iIndtG1z9zgcmnti7ofxUObbXnJeZzcPxyW%2B7a/TKcjOx7//CjclWIpMMHVSlgog3omCvyrxmQAGYoWwZBDXEagjwGwej%2BVsnSq3jVxt9c7VkWBWBkoYeEimpZTBUVAzBq0BI4Im5O9Yft5wAq63MgKHUw0/UgwMqcIBkInlKyURUa6dxrZ2ZwRJ3A8MJEbseYQPKkYdVRQBoBOKQiIJG4gcOXVzuWzcQd3ZNlK47UIdACRF5YuRIhdkQYMFkoRqCEBFrLColJa2Ik9GPHZ2bvLLYKjx/z9DcbZPlk8x2ulCw01tGimdfc//k4effNrrARiXzUl5suPf8%2BO8cvuPvbbgb892f9bC7nXOyb1N/7SW3Dx2JDWZAlARMmTWcKqR7YFP10otvH1q%2BNNeOPvLk7KQC/ao%2B1BzCGUKenSnAUDAEpF44Z3BJmNkxoXX3lr7FRjc1R6/WR6yhgqoGpLm7Ewbl8A4gQ0oGKiI6UDaJKrDcygoEojyrFO1ll6oQ9SKkygxVa5jD1bYvZV4xXI46IEoVMIbZMMEywfT%2BkhFFICIFQ1w4MVUfXqin9o5N1cU4QK1XrAXnWIGhyDk1VVZVFlErqoGIRl40ZELhixdq649dbZQe2DHYeM6ugXNE1Aqs7QbGdAmmq5Cle7dXTz3nlqFlkGoKHpxedb/017Erf6Xhfuzdh3a1Un1tliYYH4j9N%2B0ZOGeNWbXWeGspCyLjrGUJjZHUSffZtw5dfM6ewfqTl5fjTz69sM5aLgm05FWKUISaU1prrnINZgv33JiCu9smSvNbRwvp8Wu1aivx/QQOVdXmmZ1aAgwUlKfX7IgoGSqFNcuqi420SIQAEKiw5KxHD7gpWYFGCioQo9DoZiUAGOmLGqSi1sBSnvEFULIEYs2JagvRYpr5oSOXa/0j1dDt21SddQJnDCvnwharIEtQg179D1/JTq1TRIGh4hMX6xsfO7M8cNuWvvqLbxs94YEVgmbWIDFMWWDVBUxOBY17tlXPbBurtF2WIhG84Ngx86K/s%2BFWu/aVaoJ%2BBfSOzZXFatEsMCmsMRIYFsPQgEmtYQ2s8Qqsfssd6y7ePlntfuH0Qv%2BhS7Wthkx/5qXoRUJVtUpgJc1jnEHO/EGViTwRXGi4cd/2wdXFZhacnmqNMWnBq1rfgwCqanrg2pPCKyirxkGzGIV%2Bte1jVYp6gE96kE4VIK%2BwShoptEBAvNr0xTAwGCwHbSU2TBwQSQCw8SrWq7L3SiJqiCm%2BNN8em1psxXdt7a9XY64RkeRwUgwxjKpYJRgFTI/6gSDPRFlRPHOzvemjT90c7y9Y98o7J05HIc%2BzMWlgTWqNyaxlb62R/Mc6a2jpnq3VqcgaKJiXG%2Bn3/p0MRwCSTJ7txaMSG906XJh3HolhdsYAhomsMWqI1TJJYCljw50ooPlvv2/d1cFq7D94cG7s3M3GppA5cALjFEa82nw784DCYM1r0nka51XSHRPFuaFK5A5dXh3wXmOAkNc%2BSQFIj0sUAlRVEVrqVoo2bWY%2B8l6i/HFUPSAiJNpLNlRhIDDea7RQTwrFkP1AKUigGqiqJRBD1RDIaE4CGO/ViNfoyNV6pRgFsn9T/7QTaquIEPdqRPkWKryQAuRE2XuQy4RU1c7WktEPHro5HlrWb797ZKoS85KCnDWUMZNnYk%2BAGIIwwTNrpmrcxsF4fqgUpN55dJ3c9guPHi7%2BrYb7%2BUcPF9PMbVLvMVKNk8FSUM95RhYGOGC2BrBsiXOIRWnA3BTFaiU2519%2B5/hFY1k%2BfGhu/ULTTTJRQUV77pJ6Jw0q6ElpuPeqKlCK7PLtk9XVqwvt%2BOpSd9Ay57w%2BVPOT1GNG1kCoJTdSDpJW29t2JhGzsuYV8EwVDgJlysuiCqVWksUr7SzsLwZZITSu54ItEWx%2B6jRU1VihMRkEs7W0curGanHnhr7acDWcVlCHmVJVFiYjEPS46bwmpKJInSMBkDgd/dPDM1vq7dR8210TU1vHilcV1DVMKSm84ZxRskxesUaKm5RIJAy4PdoXtUUIojS%2BcJ1G/nZX6U3IhmNVII5MxoaFe0V8ZmaFWqgGDGXDrMQQEDLDlHjRzvbxwqVvuX1oZrHeto8emd0oilEQF7xqkLsuJe2Fn1yqwNqDCwBpsm9TZSYOSA5fXhkmRQRQ7nsECiL9S80ixjL5kbLtdNLMrHZ8Md9GUhC85ifUOy%2ByRml1MomamdjR/igNDXvNi7x58qRsSGEgGkA1METRsWu1wdSJ2TdZmQbQZBJviL0x6nNqj1QFpAzyCvYe5IWIiMqPHp3fdu5mM37B3pGFA5PV85nnJjMcM4lhrAVEguayUIJo7oOMGpBWC0GmCpAi9iaPy3%2Bz4bLAqapT5MhGlYxCIyYKIWrRU1D1WA0wkRomJUCspdR7bdy3s%2B/0C28fWTo73Yj%2B7Oj8JkAHRNR6r5TnKPxMlkJehQmOmRwANz4QLe4cLzVP32iWF1rZAEgDrwjAecanqgwFmfxxpa8YtJx3WG0mZaia3BVLTlnmPRveiyipUieVYtcJD5SjDjMcr/FzPazpc2qFlci0UymfnGpUNg6XO9tGClPeS6ZEXkkk35le0TbHnPDes6i3gaXyly6s7jlyabW6f1Nf69m7Bs95RY0NdSyRg3oYEBHDGANrWC0TAigFxLDMMAoyktNSIGYfFkrJ32q4//M7/rhtDM%2BqAp1ULDMCgo%2BUNMyL%2BXmsEfQY%2B56OkQkAsTfGpCK8%2Bvy9I6d2riu1Pv30XOXxsyuTgeGiqjIk9yyqPZaFc4k5MWUM8gbU3b%2Bpb6mdenPuZnPCEBdAGohooD3CHWsVT4UOlIIuVHW1lcaGwSJKSkQgVX0GFuRUTqPt4ixzNFSyHelpGRhrCrB8iaohcHBxrjO00vLhgcnKQmjNKogyIjgBqYB1ralEFeS9J1UQMxdO3mjs/uSx2cnJ4VLyynvXnQmYlgFNDSjRvCYpIBCDLIEDEEdEVGDmOGdZJIJK3El9gPwXVwaLtPK3Jyf0VgkNHQkso95Kw27mq0xkARiVXqDviaB61QuogJiJjIIIAq8igC6//M7RCxMDQfZnR28OXFvqbgpDU4DCiqrNGZF8R3tEihoyPvNeto8VZyf6ou7RK7WBzKOqClaBwmvvJWHqMfI0WIlSa60s1NPCmjcQAasSk/YM3cN3C40sYDY6WA5SL1Cva%2BmYkkJzIwAkKsWjV%2BtDldjIng3VRScivZdUc12KsPdiVPNsVxSWmIPZ1e6GR4/MTIbGyLfdOX6uFOImiFJDlIHge3VGKCsRg0GaA31olMdWH6lo6IDSQj2JrTGImM%2B/9TV7l/9Ww735t48%2BmDr/TVCnqx3Hj59d3eCV1hlGn4iUAI0gCHkNUEPz0qX0UChBDZEnUDJQCq9%2Bx30brxlL9MdPTI8v1dONAlSdlwKUrORE5lrR1CmLJ5CPQ9Pet7lSu7bYDq4stEYsUQCAlZVUwVAhwyBicDkyrhRZv9xysfPaE5YIK8AKNZo7dlIls9xMotAClci6nsDBa07oE5RIoUwKnllN%2Bi/Ot%2BLdGyrNgXJQEwLnBQAwoMyUS68VIC8aCrTaTf3GR4/M7ay1MvuyO0dnNg2FN1VNZgylzMgMqeeea%2BX8RbQiGuY/CEUlVkHFMg8dubw6ObfaDeGdJs7f%2BpZ3Hnn132i4N73j0LfOr6Yf66R0mzWMwXKoj52aL7/3s1e3LtTTDaGlikJjVY1ENIDCoEfkrmUbhhmGoczsAZNsGy9d/uZ9Y/NTS53gw4dublWiQSJjvYrNsZmACF4A4dzg3okmezZWZgNL7uiV2iCghdwA9IwoZK2nzRpyA8UgrbeTIPUS5iUd9PQhxCpg8cpQMvVOFhUDI8WIs7WmnV6WStKr8zHDnL3ZHhBl3jPZvyhA1whgOP8CzEzUExOJqhVCwMR9n3x6fse5m43ic/eMrNyxqXrFCdK88p%2Bn/EpEPdUY%2B2fgkQY5vUdhYLjQzmTig4dmd37i%2BMJAXzGQUgh1TjYsNPwfvuVdR3/8rzRc3gzv35Nk0h9a%2BBfvG5t%2B3XM2Hn3BvpEbVxe79j2fuT5xarq9MbKmKqDYeS1korEXhKSwIBhVNQIxbJiYQIaBzPn2fTsGz9y/c6h29Gqt9JkTC5ut4diLBiIIerGOuAfIe%2BocP1wKl25ZV26enqqXVpqujwFWnycC1OMsVRSWNR2sBJ1mIqaZSKlX/lEVgeQJiopAEy%2B21nJBXzHMwsB0Ja/YMBRGRK2IWhCom2nhxFSjuq4/Sjb2B/PeS0qGZW27VMFexTqvBREtBUyVp67WJr90frm6d7K//YI9w2dFsEJEGRM5w2tNtUQqIMk9gBFo4AWB8wiZtHRtsT35Pz5/fdOxa7Xy/i39K99x78TJV9wzcXmsP0gzJ8Fi0//Km377yKv%2BF8M98sjJcGG1%2B99SzyNBwPLSO8am9m4onbTMNx7aNXT0tc/deL5StPqBx6fX/9lTi3sy58bBVFFFRYCiKEKoBpRnRxaqljk/fCYvVNVfdmD03LbxSvoXJxaGz0zXt1imkve%2B6NcwXq6gImbAGMAGlN65pX%2B52Unt%2BdnmGBNFqsoKJe/zQ9Ir2OpQOUwS57mV%2BD4oAi95tRtQIYJXIt/u%2BrDeyUx/OcisoTQviqtVVcvMBlBriIKrC53hpXoa3jZZWo5Du2jYpATRntSWoQhUEKv4KqBDU0vdrX9%2BbH5itBrry%2B8avxBYniVCwoYyIvg8eTO9WKhWND9pXhESUUik/Z8/vbTjPZ%2B5uiFJxX7PszZce8ntw8cLoZka648vvWDP8EwxNi7JvK013dt%2B4X2Hh58x3CeXOs/pKj3Xead71lcau9cXz3nRtmVkCu1sGy5c%2BO57J85sGYm7f3Z0duAPvjC7s931E1HARRWNvVDoBaF3GkJh88pzr4TDpEzQYmyXX3H32PXAED5yaGZDve1HiDgQ0bD3QAb4ih7Se/itY6Wl4b6CP3atXhXVgjJYc%2B0e52JHgIhlqBwkIop6xxVBapArhcSLiBdRYmg79UEnFTtUsh3L1CVAcngPEu9ZFUxE8dnZznAxNLh1ojLvVTuaV0VhaO2USCjQQEFR6nTwY0fnx1uJ45ftH5kbLAazHrk4cy2LA56RQbACVhSBFw0NUZh4GfjwU3M7PvbU/PBoXzH5jgc2HLt1fekogBVrOAFRMtEfT9%2B3Y7AO8dr1tP3qsv/uZwzXbPlXiDLHocH%2BLdUF8ZIElnwYcGoNpUrcLBfD86%2B5d%2BLgC28bnD89tRq/41OXt1yca20ODPWJSsmLFnQtW8xlKTBEGhgWJhLvRSaHC7Mv3jeydHOlE3z8%2BPwmAAMiGnkvsSrsWg2WDYSIfDk29f2b%2BxrTK0k0W0urBhrkNIiuSVC8ePX9RdtlJl2sJbYXs4xCOSddkDE0ayVZoMTUXwo7XsTRV7SXUM3BZa0j/RdnWuWNw3FzqBTMQeEMsWcmUpDNKTJYURiGFh47vTR%2BfrYTPW/32MLuDZUzXjUxILDpyWjXcKFXzmOoRuIlJqB4fbEz%2Be7HpnYfvlSrPrRnePW1z954eLwans08GtaaVmC4E1hORFHfNlKYLsfGZalHs%2Bu%2BTVWZDx8%2BHCTe3%2BG8w2A5dGOVcFWJyRApgZUZapkcMSUmMHMvu2P86Pc8e8O1Wjvjhz9%2BaeJL55a3GMaAAgUlzgnXHAjnsyZEyBCrMSwu88l92weu7N/U1zx4YaVy7Fp9fRhwQYEYooFqrjPJdeJQ75Dt3VBZVCKcvNEcYeZCL8XXnIAXUYXrKwbd2JDO1ZNQlVnBhohNrhAjx0Su1vGxMYS%2BOD%2BdPZ/Qo98AAgVnpupDS83E3L6xskiMJrO6vH4uJCJGlYworGUOzs11Jr5wdrlv17py%2B3l7B89kgjqIMmb4tY4h7QH7HDbAiFJomSunp1pbf%2BdzU9tvLncK33LHxMxLbh95Og5p3jBlARvHBG8MOybxILhSzCuj1bgtInBKO/7d7x8f5k8fQVFBfeIV5dhkbKidAz9GYEgNGEwk1pAYgk8zXzswWT35%2BudvvjxUjbM//NL04MeeWthKTAOAFrwgFsqTDv8MFysgEc2BNlZfdufYtdG%2B0H3i%2BPLAQiMbY%2BJYALsGgxmkxpB6CEarQW39QNw9PVUf6Kbalyu3em6YIB7wccDtYkRutdktiGpAvaySmIkANqR2tZ0VIF6rBeqqUi5kAvk1UYSoxiem6pX%2Bkk23jhUXvaookPfsEaSnZmZAbL3tRv/8%2BMJ4aElefPvgeQOsQCEg8QryUBKsgURV60VCLxoqpPL5sys7PnDw5mQhMvr9D224eO/W8qnUy7KCUkOszCBDJsdaRMKci2r7KzYlo4DKQK3eGOGZdoPyriEgNCSWyTGTXysV5OV/eJPTUpm1tpuKNidHilfe%2BILNl27b1Nf9nycWBj/4%2BMyuJPPrWbXiPGIPZVXuUUosRPDM5FnhByvhwksOjMyudrrmo0fmNhBhAKBQe7hQ1mp2AEJjsz0bys2plW5wbbEzbBhFAGEu3WOIqjeGO%2BVCmDZTH3qRmNCTPIgPeh2o0WozKwSGtVIIW2DKegKiXFZBsPP1tP/aYie%2BbXKgVopsfe3xoUJ5eZzU5aRB9dMn57ct1JLgm/eN3Vw/GN0UQJhJmFjXdOsCsBM1zmssqv2Zk/V/enhu70cO3xwb7wuz1z204cz2seJ5ZbNq2bSYKAODmfMEjcgog9WAhCgvo%2BWTV4g5KDD3FyupYSTGMLqZsEiuF3mGTqB8vA8RiSXyBhDL5L1qtxLT3Gufve7y828bah66tBq/5zM3Ni023bhlCr2oUQhrTnqCiIQNeWbyzkmyZ0Pl6oM7BmpPX68VDl5YHQ8sR4oe%2BYJ8Lgyg6knTXWOFmoXi7HS9j/LTaQRqVcUwMwyR7yvYtN5xtpv6opJa9AqjAgqcUrHRzeJKHPgo4KxH0/GaWzdEwfmZTj%2BI%2Bdb1pUVVTXtKBwtVqwrjHBlLFJ2ebm1%2B8lKtcvtkf%2BOOzZWLaSYp5VLa3k7l8cyLGi9qVaVQ77j1f3zw5u4jl2p9Bzb3t/7VfRMnhor2mlOkDGSAOkMQ0xs%2B0BPQ9qpYSiIw7URtrwswAdDmt775rnYY2gvWMpYaSdhOXJFyIlclLyOr6XkwJbK9FF8NUVeJ6kQ0/c37R57%2B5jtGpq8utoPf%2BczUxmuLyYbQmqL3EotqkJffWFXZMa3JHrD6gr0jF9YPFtJPnFgYmKt1hxha0Dx455GOKFORznA1Wtg5UeqcnKoVW10fo9dKpUqc12IhA6UwTTMxrcTHltkQNIRBSNAoSX250cnCgXKQBoYcERmoWupJKjKvhdM3G5Xx/jjZOBgtiOQENCkswAFUCyAtrbbS8U8%2BvTDaX478C/cOnWPDC9ZwyoYkB%2BdgUljvfeS8lkjRt1DPNv7Rl6e3nbvZLD371uGFV983caRYCKYFlBAoA5G3lhwIGYhSgkkV8Hl7CqtX5W7mS8utLDbWImC6uaNgZxkAYtbPWMtoJd5cW%2BwOMYMkR7g9ThBMREw9hW%2ButoazhjtMtime5p%2B/Z%2BTpb7933Y1mktk/%2BOL05Lmb7e1RwBXNaR3rvXBPVylM5IgoKxfs/ItvH55vtJ35%2BPHlDYAOKFHkVFl6hiOmJAjM6m2TfSurLR/cWGpXmJhVeiqynn58uBwlYItm6osKDVTZQChUaNTJpNRJ1QxVgsQyedUezwhlJpiZ1aQ6u5pEu8aLjchyi3N9JYmqVdXAK4qkOvQ/Ty9tXmml9mX7RuZGqnZaVDMi9txLUFXAHhoAFFvGwI2lzvY//PL0trlaGr1k/9j8C/YMHlHVOSZOmMhZQ8705O%2Bk6lXFqYgXkTzAemEo8WIjG5xvpLGxFnFAX/73r9vfYgAYHDR/auFvKiwdvLQ61kq0T4SsgEKoBiog8UK5KhfSMwByci/PfFKv3bu29J/9vudsuFIIDf7g81PrDl5Y3WIMlXyeMdoelgEANUrqvNdb15VmH9w12Hz6xmrp2LXmuoApEs1xTy/OiHPqto2VlivFQM7MtPqg2vsd5V77kw5UgiSwjEbHF0kRePFWRC0R23bii07V9JeCRJGfjl4ItYY5Onmj2a8qeutEacV7EeQN5aykVkkDJoQnp5rrjlypVe/cOtjcs7F0NXXIDDHWWmF722FUEQbM5bMzrQ2PHJpd13Xgl%2Bwbu3LP1soRr7pCoBSKrPdy6DPtzcxQAfm814%2B9V%2BuBQEVLx641xjqpY0iWDhTD9z6D437ttXfNlCL7qzYwuLHYjr98YXm3NTrmve/PREqy1rAmoiK9wmSeRQsZ8kHAmTVwAm1vGy%2Bdfs0DE2cq5QAffGJm3RfOLO8wTAMCiqQnqCHir/DyQOsFewemRqtB9smnF4ZX2tl6ApUEEiKvULOo0EDZ1jaPxK0zU41yK3EDRBSAiYhIvQLVgu0GRmW17WIQRQQOFAhVEbYTFxMRKhG3vRdSJQMmo4Kwnfj%2B8zON8sahuDPaF9adKikLQdVCESg0qnf8yKdPLo0PVWL/wtuGLjtFzeZNRZYIOXZlNd5LgYH%2B49fqW//k0OwEqfKr7p44f8fW6ped8gwTOoYpYaMuP9C5pFAV%2BckmMoAaEQ0ykZig5ePXVrefnlqtBHGEYmj/4OE3HfjS/8JV3j46%2Blux8Z8K4ogOnl8e%2BNKF2m4AIxCKMlXrvJrMay6BE0DBrF5MniIrEUHZkEuddscqwcXvun/85PhgMfvI4dnRx04tbWfS/t4sLRYVVlXqzUhw5ThYevFtY/PLrdR87tTKKBMqUISSa0KMQElEO7dMVJZq7SyYWu72BYbMV8poqqGhbiGwrt7JIqhGULV5eFaz0s5CQ4ShUpz2KhKsmrd6Ty8nlZlaEuxZX2lZQ44EnHsusBe1DC587szq%2BuVmZl9029DNvoKdy/uTlVnZqIIFuT7FMFefvLy69QNfnhoNLfQ7H5i4vGM0Ou09NY2hDMSe1k4aPLz3JFASr8YLrIgEXjR0oiGplE5PtXZ98dzqBIchRSTH11fin%2B1xD18x3E%2B8ZrIzORS9vmD8IdiAHnt6YfDTJ5Z2dZwbFY9y6qQkqgXvNc5ytiMUQ5Z7n8F5JuiJkTnRdKgcXPqeh9Yf3zlRTj7x1M3hTx9f3GaZ%2BkU0dk6tz0vhCqbMKbV3ry/dvGNztX3w8mp8fqY1bg2XIBoqQCY/VX7rWHGpGLE/Pd3sY2i8Vm9TBYeWk2JsXb3rbU8KCFVlIgpqbR%2BzMb5YsJl4ZVWBeFEG6Oxsq1yMA90xUVn1op4YhLxLx5BqcO5ma93hy8vVA1uqtT3rS9cyJxlRLkTStQqB08gQ9R26tLrlw0/ODA9XIveaeyfOrRuMzzulLrHqGkbL65GwvY4gFg92Xtg7CZz3BS9S9E5Gn7hYP/Cp4/ObHQzHjKtD5eB7/%2BsP7J39K4ewfenD76h/9w/%2Bu4%2BvdrIDjsyWGwvN6MZid2iwEkQDZUsiZKAUECFXRhFRj%2B%2BTXJiz1hvGqiAqGG7sWF/uztaS4UPnV6peUdk6XspEJSUmYVrrnYKCSCYGAnNqqtF3fb5dvH1TX2bYdECa9bQqXAwtbix1By/NNkt3bBloM3MLqqo5BRVcnO%2BM1jpZePvGygIRsryajcLx683xdqbm/u19c0xIchet1Emk%2Bhcnl9atGyomz9o5MO0UKRFp7hHIdhMd%2BtOn5rYYJn3VXeOXo5CXiMgzk%2BYnDQaQkAl9h67Utn702NzIeF/svvP%2B9WfH%2BsJrokgMcUYgYQapIlRohJxYt6Rgp0ROhJ2KBVF5vp5u/vjxhX3HrtWGyUYUGzkxVrDf%2BVtvPnDibyyk/txrdk2/YLL48sECHrYB5PJiN/7AF6a3/sXxpd2t1I0xaex6x9mLBM6pUa%2Bm1xJAeZ6nzATyqggNbr7qnnXH927u73z%2B7HL/x5%2Ba3QpQFQoroqZXEBMR7wZL4cJzbx1aubbUDh8/uzxqDcV5yo%2B10SPZretKtZVmaq8tdiqG1EovQWEiGSjaLMnUJA5BTmaRZl7NcqsbFC18FBgBmEVhmNjeXOkOLLfS4JaJUkNV0ly6kFNbxnD8%2BKXahqnlJHzolqH5asHMe4HrSdsBBYmIZebS4xfqWx99amFk40Ax%2B%2B4H1p8ZKpsbKpQysSipASEQRQjRwIsEXjUQVZs5CZ2XgIhM5nXwiQu1A398cO62S4tJOQgD9Mf8vtsmyy/%2BzR%2B64/jfqc3qDa%2B4tUHAj/zQu578i4WW/78Sz3u%2BeG5p4MJMs/SsW4fm9kyWbjJz4h28Gu6wqjIbhXpCXi3M%2B/iMQDxlcWiuvvKe8daHD83c/emnF/qJeNfL7hi75rysQqmZT%2Bwh77x279zWf%2BPMzWbpC2cXq7s3VoZHq1HHi2YiEGFxW8ZKy5VCuP7szUZp94YyZ94z5UyFVAo2baeOW4mLCkEAhapXoJ0oT/QHCbOKywVPMETByRv1akCQHaOFms/Ff6Rgay1oerk79vjFlf69G/s6d2zuu%2B6hXSZILvVUUlUbGKoeuljb%2BqmTi6ObRorJq%2B4aO9FXMDdF1K/V8CgX5OYdK0osAhJVVoFVUiai0sXZ1rovnVuZnFpKShxYhKyXqnH4H//HD%2B/7w79uHthf2zugAH7rTXd/5L715YeGi/TLhUJQX2hr%2BCcHZzb88Rdn9k4vp5uNoQEVipyAnPcsSqyAcaJWxFt4JQY5BqUh0%2Bwr7h4/cdf2/tYXziwOfPLY/DYi7lNFTuXmcjrHTLXn7x6aSZznTz29OKGEPq8arPV29xeDxrbxUufSbLPU6voCcZ4%2BA9BqwXa9E2p0sph7BaJ24m03Ex4sW5ePXYCFwrYSV7o43yluHit3BstBK0%2BWQJSLYSufPLY4QaL0/FsHboK0RWvSQFUW8WyZik9cWN360aNzoxsG4%2BTVd46dqMb2uggSMLm1gcC5R6DAi4aZSJCJ2kzyRsfVth/782ML%2B//44Myu68tpyTDSSijvnhwMnvO7P/TXG%2B3v1Nj4E7lQ5T/8hw%2Bce/%2BNpebPtTvmFWfnktK15RuFe7YNDN2zcyCoRJx4QSLeG2JemzDSU8exsCERBw4tz77ynvXwenPvx4/NVYzhyW%2B6fbiVOG1oPiBGssz7DUPx/EO3Dg9%2B5tTiwKkblYm9GyudzIkDyCtRd9tYaenUjdqmqeVO35axQgOkcF5RDEyqCjS6PlJVQwp0Uh%2BlznNfMXCZKntRtpboxnzSv9L29oW3V5YJ6nKiQdgwzJOXa6Nnp%2BuFlxyYWBofCGZSr2IUpASjosYyhYcv17Z97Nj86IahuPPyO0cOF0LMZip5UTGXlsDnQI0FPlABOclLdWmiAwevr2x%2B6nJ9ZLXjgsAaFEP93Ggx/MXffNP%2Bz/yjthK/7bt2HSfgO97428e%2BtZXiF5NM9j92ZrF0/Frtlvt3DgzcubXvSmhtxzkPMpQS4IjZQwHx2psdCGeYZ15x94T3ogc%2Bd3pxqBSb3fds67vogDoxeQIkE0ru3zU8c/Jmq/Sp4wtDW0aKtciarqh6l4lsHo6XC1Gw4fJ8t2/HRGUh1VRU4cuRcTYwutJyERGzkONW1xeYDVWLgfOZEqAMpfjcbKuvFBrZMhy3Eq9QUQYpNTq%2B7wtnloa3jpeSB3YN3EiddxAiIRgRMdZQ4diN5raPHpsfmxiIs1ffPX6iWgwuOa9kQLmE4xnJhBoVkBexCmGvKFyYbW944vzqhhvL3ZhMhDCg6aGi%2BS8//qz9v713L6X/JM37CuBdb9z/0Xu2FJ8zUOBfKEZ2pZ6q%2BeSxmXXv%2B/zUnednWrscoey9zxXLeQMxfWWoGYlCNDRYeuVdY6e3jJaSPz04M3ToYm1zFHDsNU8wRbwWA1p5we7B%2BeVWag9eWB4PLGLJy/%2Bmv2Q66wbC1rmZerWdZOWepMHEIfnIsK91soABAxiqd3xgGFqNTNJrV6BO6qMLs81480ghHSjYjuQjnNlaih6/uDy22knt8/cML0QGDVVSZZCQmtCa8Pxse/LPjy%2BNjVZD98o7R8%2BVI3vTZeC8fpmzu156EwcU7KEG0ML0crr50SPzdz56eH7bTMPHccTJYAHv2D0R3//utxx4%2BO9jtP/tWV4/9tKddQC/%2BHPvP/WhG6vJTzU65rsvLXTi60vXNu7eUB188JbBq6P90Zx3vqMKYmMcAwTWNW0Jx6Fdevnd42c/kMktHz%2B%2BMFItWr97fflq1/mEiZyHtvduqF4/vbHZ97nzq5VdG/rHxip2zqnXwBrsmii3Hz0yU7mx1KluHIo6IHBkWSoxu2bHBUkmETFLrZ1FxNBSMfC9Jnw7tdItLTVT89DukRUlzUhgGGRuLCVDj59bKe/ZWG3uGC9MpyIJM%2BBV2RLs5cX2ho8cmV9fiYy86q7xk0Pl4FIq4pjUSg5rmIhJvFonPmSmsNnOJg5eqW0%2BeqXW302Vg8CiFNJnxqvRL/zq9%2B3/4tdkJNR//ld7Tr33h%2B947eRg/PL%2BcnDIBCFOTDdL7/vc1C2fPbG4r5m4jWyorL0GP%2B806IlHGURSDM3Mt987dnq0GmYfPDg3fnamtTlgLkivz9%2Brdh/YMTjnhfSzpxcmrKGqIY6813DLSKnjPfTsdKscWMuiZIKAdagcuGYipusRe/FRo%2BuCQsAaGVIQGWYOLs60igGzbhmOG15URYmJUfz8qYUhZqbn3jo857y2IRBRwBAHN1eS9R88ODNpDevL7xi9NFixV71q2hv%2BzVCyImqdV0uskRNdd%2BTS6v73fnHq9sfPrww6GC4X7KXhYvDGV4xFL/mHGO0fZSazAvi1HzjwZ6979vrnrxsIfqQUmastYfPZ00tD7/vCzVtOXG/sVegwSMMMsCJkvPPk8xzfl2Mz/cp7Js6XIiMfPjgzOrOajgaGA0GOE8f7w/qzdlQb56Zq8YW51pA1CLxI0Fc06cahQnp5oV3yHmE%2B44IwWAldM/XcziTIvJpa13N/KXRRaJwoOHMSXJpvRxuGCml/0Xa8gKxhOjPdrJ6baUTP3zuyOtYXLWZO2UveULnSysY%2BdHBm0jnlV949dm18ILrs13p1QCxE1ovP638qlbPTzVsfeXx23yeOL65f6cCGhheHivyfH9gy8OB7fnjfu1/zmr3pP3Tf/9GGab94/0TrN35g38O7JuT%2B/hhvi2JTm29p%2BCcHZ9e//wvTd11b6NwSQPtVXOjy7A4MQJR5oBTOv%2Bb%2B8WuWCY88Pr1hvpasJ1BRBAVV8HNuHVwZ74/8p5%2BeH2p3fZ8oTGjZ7dtcba%2B003CxkVZsnstqITAuSR2yzFvxEjU7mSmHxtt8hoKdqyWl%2BXpqb9tYbltSFVHT6GTlvzgxNzDWF/t7tg1MOS8pMYxC41rHTXzwielNq21nXnnP%2BPSGweiG87kgCQTrVCNxUmKgf6bW3f7hJ2fv/%2BATN3ddWUriwFLWX6D3bh6In/W7P3THf/zxl2%2Bb%2B7qdgv7W19w7%2Bz9%2B5K6f2jgQPrca4UPGqF5c6MZ/9KXpLR87unTbSkfWBcwBuJdtiVjnvY72RdMvv3t0utYR%2B8gTs5PtTIZCS5YMcyGyyT07Bhvnppvh4Sv1gTi0holo94ZKR1Vxab5ZNYzAe6U44CzNPDkvEYConXhTCIz3IsYY2KsLnUJkodtGi22noMBwcPRqfXBqsRvct2Nw2Rp0pTfLWxTVP3tqbtPUYid62f6RuW3DxetJpqrQUFRDLxoytNjo%2BsnPnl294w%2B/fPP2U9PtfhiDakyf3zRSeOn7f/Su7/v1N%2Bw794%2B9z/9kF0Yc/Mg7Z0994l2PvOA7/81RUd2aeNpwY6kbnZ9qDDqRyli14KOAVYCAQdZ7MYOVqDNUCe2RSyvVlUZW3DvZ14VCUqc0UAz8taVO6epCN7pzS38aWJIoMOb0dKNYa3m7d0O1rkCWOomOXV2tTg4XXBAYPXy5VrxtsppMDsedzKt97NRSdbAcyj3b%2BurioY2uL3/kyNzgptFi%2BrxbB2e8khMVw0TFTz29uPn0VLP0wr0jiwe29F1OvLg11RYTGREMnLxR3/Xnx5Y2n51plZUDKoV8brhkf%2BJH7z3wkz/40vGL/7%2B8d0AUePgN%2Bx595d2jzxsqm39dLZobbWHz6aeXxt772NXbT12v72DwAIGKIA4yp7htU%2BXmt941unLmxmr8J0/MrHeKGADCgJOXHBhd7aYZf/HsUr%2BqRqSi20dL6Y3lTrjSdrEhkr6iTS2TNjrONDreZM5joBQIA1xru/D6UsdsGS4lhgjGIHr8/Ep/M3H0ottHVsKAnEICZip99vTSpkOXVqoP7hps3LNz4HImlCqIRJUJGl2eb2/9oy9PH/jokYWJpbbaQmjmB8rBz%2B8aKj7rnW/a/9677vqHz13%2Bmt47AAC9K7t%2B65f%2B/Pyj5641/s2q59fPNnXwQ0/Mrtu%2Brtn/nN1DKxuGoyXx1E0TLwc298/Nr3TCTz41W64UzMiL9o3MZ6LpttHS6p6N1dLnTs4X9mysFoYrtrVtrNh%2B/MJKcXq1Ux4qV2p5sU3QzcR6n08jCi2LF%2BZLc%2B1YAWwaibteBYtNKR25vBLftqHSHa9Gjcx5igJjj1ypjX329HzfbZv6ug/s6LuROkkIoMCQma%2BlAwcv1dedmWr0JcJkoZ1qgd67vhL911963d6L%2BCoti6/i%2BqmX7pwC8JM/%2Bp6nfm%2Bh6f5DO6HvOj/bKd5YnIr3berru3tb3%2BJQxdY6qXPP2zs6106FHz%2B3WBkfiOX2zdWZTpKl92zvXz56eWXii6fmqq%2B6f12ycajYHukL09PTjcqe9eXYMDi0rO3UmdQJxQFrIWSkIuHpqXo0Wo38WF8hJRLzhbMLFUDpObcMNlLnvTGGz91sDn/8yPTAzvFy8tL94zdUtcOkYTtF8ei1lfVHL9f66wmMNYRKTJ8aiPitb3/z/sfxVV4WX4P1G6%2B/4zQB3/eWdx/%2BvVqHf7aT%2Bhc8cbFWPnW9Vrh/10D/Xdv7V6OAu99618RiJ5PxDz0x1RdFm9KtI4WF8T7TevCWgc6Xzq2UH6i5wsahuLF5qJgdu1orNjq%2BWAyt9JVCqXecWah3iUk0DiyaHRfNrXbDfVv6u1HAuLrYLR67uho%2B79aRznBf1Em98kwtKX/oy1ODfYVAv/WuscU4QDfzVDo13Rw8dGFlYK7uQ2MYlVBP9lXD//SOH7ztQ0Q9DepXeTG%2BRksBvP0Ndz32vh858M3rBoPvLhf56ZYY84nji/1/8Lmp9aduNEZUib55/3ijGFn/J1%2BeHmx03SAz2WfdOtruK0XyFycWKk4o2jFRyZptR9cX2mVmBEPVSFIPrLYSjgIjxkCuLrRs6pRuGS97gYSPnZ4vFcNA7tza38mcM82uqz765NSIMcC3PzC5Uo6C7NJcZ%2BSPHp/Z/LHDs2OLLYTFyFwfLuEn7t1snv3O19/%2ByNfKaF9Tw32ldZncwz%2Bw/wPP3z3w0ETV/Hwp5sXpugs%2B8OWbQ3/0%2BPRYO3Hh9z57QxIY0KNPzgx3U98fh1bu2znYOXmjEZyeapQn%2BkJXilnO3WyUvEdcjENtJ57qHcfjfbFWI6YLM83AGpaBksXxq6ulszcawbNuGe7EITsnWvzEsdmhpXpqv%2BvBje04MPjYscXRP3ri5viVpbQQGG70x/i1WzaUH3z3W%2B781X/7yq/9ddQGXyfrY7//35MjH3vH51/12h991ANh6nXX7GpWPHl11cYh0x1bB/H4%2BUU7v5oEO9dVspFK6C7NtaIrC217z/aB9nLLBdOraTBcCe3UctdenWtxre1QCA2VImOPX6uHG4eKfsdEwX/40ExUKUT6kn3DDWsYnzuzXD18aTV42R0TvtFx9CeHZkvXlrPIECWVkD60eSh8w8NvPPB7n3vkN%2BpfL/v1dXud9E/83tN3ztQ6P93s%2BJelToKRSoQoYFyebeGld4wnL9w/Wj8z1Sg%2BcnCmtHtdOZtZ7fJ8PTP5MC/tSf/yDlfqjWAcrkQy1h/5M9NN8/K71jXu2FRsHL/RrP7JwdnS%2BsGYGMCl%2BTYiy1qM7OcKoflPv/uv//Huw/kXYbi19fq3P/Xziw331iRLxHshSyxxaPCi/ePJ9aUOH79aD7wIFyODgXKYDZTCdqXA3VJoXK7lEFNvu2i55YorrTRoth2g8NvGCtnuyWr22dOLca3letMSkV%2BeWuJ3/84P3/km%2BksDcb5huL/H%2BskPnd9w%2BUbjE53E7RkpGz9cDtJLs62o6/KBUs4LVQqh7pwo13ZvrEyvH4znC4GpKyOBQrxXm08c1kCEy0vNdODsVG39yRu1wflaamGgDEYcMLaPF9Nm25ubjSQohMHUpgF%2B2X/9/juf/obh/p7rkUdOhh%2BeTT/QSOWVVjP9trvWXd80HM/OrXaGj1%2Btjy03nd0wUmzfPlmdGqkE06JU9woHqDNMGRN778Ur1OdDkjSwRDYw6G8kfvLE9cbGCzOt/kLIctfWvpX1A4X6bK3T98FDNyc6znA1osO3bxt90U9/y6aVbxju7/Glvvc3Dr%2BtnuInncvwrF2D8wc2VU6IoBsHxoNRsGxiIm2paEvzMRsZSD0TO4BcPgFMs3z%2BoTAhb1oR0lgVRUMoe0GVSeFEXeaUQYjPTze2ffrU0gAHIZUD/e3f/5E736Rfhw7TfD0a7o3vPPba5ZZ7WzdxvHdDtfngjr6nBFhipq5AMwZ1AGqCqEGG20SUEmneWNgbFpbfN6H5dKjexUbETFA1vWluHoq2VzRFqA1oWxTJWF%2BUOtXy9YVmlCkOPPSqH7155GPveOrrbY/46%2B0L/cR7j21ZbiZvS7w34/1xeu%2BOgdNOtNbrJUuJKQOTI2iq0BSiqar0OrPyATBQGA81CliRXHzqBVZUjOYDGwBAlZERcVeBtoLaDLQTL6t3bu67unGwkGSZ8Gon%2B6Wf/sDpvd8w3N/Epqjy9cXuf%2B6qmSiGrM/bM3C5HGFGOe/UNtybwA1gTeMPaECaNzCSaKiiAakahhioBgQNAY00H%2B8bgjUk1hCEgAELUpvPB8vH1xqQjyxWXrB7eKoSGd/JMHRlrv22f8jNU/9suMq/br3lHQdvSxy90rtMN0wU0lY3CS51s61QiJJ6JutN7/rSfKYAk6gSRJgNEQQMIkeELL/OjIhU8iGxtKbXIiaCgZJRAL07dzKFengYYjIiYlTUTFSD5MzNdqGj5sUHDwf3A/j8Nwz3Vyzv/Dg4KjAJLs12okuznW1rY8KIn7kbDl8RFf9l6gzP/DfqXS5BRGtDpnryEP3/5GP0zL%2Bl3mQvEYHzuUqIScFMMGFsoMnGb5y4v2YVxHw5Ivc%2Bsvwconywy9oVi8rkeiPTTL7Fih5BQs8MrCGCEkx%2Bm2o%2BbJeQS2Ch%2BfU6RMgvIBElMvzMbYGqms/mZYhlAoE1nyXHxvjuwbLVT38DDvzNcY5%2B7N0nRj1lJrT8zPdLNPAAQFHCaANAB6EtUWCYOp0ObBhpVzIOKTAkGYtll7SNRwFAp4PMRVoo5J8VWqbA5J/tMqa131EOJHW5Yj%2BIVKmZsufQ/Pqb7pz%2BWlYC/qr1/wL9Ptz8f0d5rAAAAABJRU5ErkJggg==%22 x=%22212%22 y=%22208%22 width=%2258%22 height=%2245%22 opacity=%220.14%22 transform=%22rotate%2814 241.0 230.5%29%22/%3E%3Cg opacity=%220.1%22 transform=%22rotate%2818 225.0 65.0%29%22%3E%3Csvg x=%22200%22 y=%2240%22 width=%2250%22 height=%2250%22 xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22%3E%3Cdefs%3E%3ClinearGradient id=%22s%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22none%22/%3E%3Cstop offset=%221%22 stop-color=%22none%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d=%22M23.8,21.5 Q27.6,6.7 30.0,4.0 Q32.4,6.7 36.2,21.5 Q51.4,20.5 54.7,22.0 Q52.9,25.1 40.0,33.2 Q45.7,47.4 45.3,51.0 Q41.7,50.3 30.0,40.5 Q18.3,50.3 14.7,51.0 Q14.3,47.4 20.0,33.2 Q7.1,25.1 5.3,22.0 Q8.6,20.5 23.8,21.5 Z%22 fill=%22url%28%23s%29%22 stroke=%22%232B6C99%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2230.0%22 cy=%2220.9%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230.0%22 cy=%2215.7%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230.0%22 cy=%2210.5%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2238.7%22 cy=%2227.2%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2243.6%22 cy=%2225.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2248.5%22 cy=%2224.0%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2235.3%22 cy=%2237.4%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2238.4%22 cy=%2241.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2241.5%22 cy=%2245.8%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2224.7%22 cy=%2237.4%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2221.6%22 cy=%2241.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2218.5%22 cy=%2245.8%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2221.3%22 cy=%2227.2%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2216.4%22 cy=%2225.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2211.5%22 cy=%2224.0%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22 fill=%22%232B6C99%22 opacity=%22.6%22/%3E%3C/svg%3E%3C/g%3E%3Cg opacity=%220.09%22 transform=%22rotate%28-20 109.0 239.0%29%22%3E%3Csvg x=%2290%22 y=%22220%22 width=%2238%22 height=%2238%22 xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22%3E%3Cdefs%3E%3ClinearGradient id=%22s%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22none%22/%3E%3Cstop offset=%221%22 stop-color=%22none%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d=%22M23.8,21.5 Q27.6,6.7 30.0,4.0 Q32.4,6.7 36.2,21.5 Q51.4,20.5 54.7,22.0 Q52.9,25.1 40.0,33.2 Q45.7,47.4 45.3,51.0 Q41.7,50.3 30.0,40.5 Q18.3,50.3 14.7,51.0 Q14.3,47.4 20.0,33.2 Q7.1,25.1 5.3,22.0 Q8.6,20.5 23.8,21.5 Z%22 fill=%22url%28%23s%29%22 stroke=%22%232B6C99%22 stroke-width=%221.6%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2230.0%22 cy=%2220.9%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230.0%22 cy=%2215.7%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230.0%22 cy=%2210.5%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2238.7%22 cy=%2227.2%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2243.6%22 cy=%2225.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2248.5%22 cy=%2224.0%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2235.3%22 cy=%2237.4%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2238.4%22 cy=%2241.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2241.5%22 cy=%2245.8%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2224.7%22 cy=%2237.4%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2221.6%22 cy=%2241.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2218.5%22 cy=%2245.8%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2221.3%22 cy=%2227.2%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2216.4%22 cy=%2225.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2211.5%22 cy=%2224.0%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22 fill=%22%232B6C99%22 opacity=%22.6%22/%3E%3C/svg%3E%3C/g%3E%3Ccircle cx=%22140%22 cy=%2270%22 r=%225%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%22152%22 cy=%2252%22 r=%223%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%22147%22 cy=%2238%22 r=%222%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%2260%22 cy=%22150%22 r=%224%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%22290%22 cy=%22150%22 r=%226%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%22280%22 cy=%22128%22 r=%223%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%2230%22 cy=%22280%22 r=%223%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%22170%22 cy=%22160%22 r=%222.5%22 fill=%22none%22 stroke=%22%232B6C99%22 stroke-width=%221.1%22 opacity=%22.12%22/%3E%3Ccircle cx=%22110%22 cy=%22120%22 r=%223%22 fill=%22%23ffffff%22 opacity=%22.55%22/%3E%3Ccircle cx=%22250%22 cy=%22290%22 r=%223.5%22 fill=%22%23ffffff%22 opacity=%22.55%22/%3E%3Ccircle cx=%22300%22 cy=%2220%22 r=%222.5%22 fill=%22%23ffffff%22 opacity=%22.55%22/%3E%3C/svg%3E") 0 0 / 320px 320px repeat, #DCEFF6;
+}
+
+/* Cuenta regresiva: separadores en forma de perla */
+.countdown-separator {
+    font-size: 0 !important;
+    width: 9px;
+    height: 9px;
+    align-self: center;
+    margin-bottom: 1.15rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") center / contain no-repeat;
+    filter: drop-shadow(0 1px 2px rgba(14, 58, 92, .25));
+}
+
+/* Tarjetas: estrella de mar arriba y concha con perlas abajo */
+.event-card,
+.party-card { position: relative; }
+.event-card::before,
+.party-card::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 60 60%22%3E%3Cdefs%3E%3ClinearGradient id=%22s%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22%3E%3Cstop offset=%220%22 stop-color=%22%23FFFFFF%22/%3E%3Cstop offset=%221%22 stop-color=%22%23CFE3EF%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d=%22M23.8,21.5 Q27.6,6.7 30.0,4.0 Q32.4,6.7 36.2,21.5 Q51.4,20.5 54.7,22.0 Q52.9,25.1 40.0,33.2 Q45.7,47.4 45.3,51.0 Q41.7,50.3 30.0,40.5 Q18.3,50.3 14.7,51.0 Q14.3,47.4 20.0,33.2 Q7.1,25.1 5.3,22.0 Q8.6,20.5 23.8,21.5 Z%22 fill=%22url%28%23s%29%22 stroke=%22%232B6C99%22 stroke-width=%221.3%22 stroke-linejoin=%22round%22/%3E%3Ccircle cx=%2230.0%22 cy=%2220.9%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230.0%22 cy=%2215.7%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230.0%22 cy=%2210.5%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2238.7%22 cy=%2227.2%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2243.6%22 cy=%2225.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2248.5%22 cy=%2224.0%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2235.3%22 cy=%2237.4%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2238.4%22 cy=%2241.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2241.5%22 cy=%2245.8%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2224.7%22 cy=%2237.4%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2221.6%22 cy=%2241.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2218.5%22 cy=%2245.8%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2221.3%22 cy=%2227.2%22 r=%221.15%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2216.4%22 cy=%2225.6%22 r=%220.95%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2211.5%22 cy=%2224.0%22 r=%220.75%22 fill=%22%232B6C99%22 opacity=%22.55%22/%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%222%22 fill=%22%232B6C99%22 opacity=%22.6%22/%3E%3C/svg%3E") center / contain no-repeat;
+    transform: rotate(16deg);
+    opacity: .9;
+    pointer-events: none;
+}
+.event-card::after,
+.party-card::after {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    width: 66px;
+    height: 32px;
+    background:
+        url('concha.png') 0 100% / 40px 31px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") 42px 20px / 10px 10px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") 54px 24px / 7px 7px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") 46px 9px / 6px 6px no-repeat;
+    transform: rotate(-8deg);
+    opacity: .95;
+    pointer-events: none;
+}
+
+/* Pie de página: hilo de perlas arriba y concha sobre el nombre */
+.footer {
+    position: relative;
+    border-top: 0 !important;
+    padding-top: 2.6rem !important;
+}
+.footer::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22%3E%3Cdefs%3E%3CradialGradient id=%22p%22 cx=%22.35%22 cy=%22.3%22 r=%22.75%22%3E%3Cstop offset=%220%22 stop-color=%22%23ffffff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23EEF5FA%22/%3E%3Cstop offset=%221%22 stop-color=%22%23A9C3D6%22/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx=%2210%22 cy=%2210%22 r=%229%22 fill=%22url%28%23p%29%22/%3E%3Cellipse cx=%227%22 cy=%226.3%22 rx=%222.6%22 ry=%221.6%22 fill=%22%23fff%22 opacity=%22.9%22/%3E%3C/svg%3E") 0 0 / 12px 12px repeat-x;
+    filter: drop-shadow(0 1px 2px rgba(5, 25, 45, .35));
+}
+.footer-content::before {
+    content: "";
+    display: block;
+    width: 54px;
+    height: 42px;
+    margin: 0 auto .4rem;
+    background: url('concha-blanca.png') center / contain no-repeat;
+}
+
+/* ===========================================================
+   BURBUJAS DEL MAR (las crea java2.js)
+   =========================================================== */
+.capa-burbujas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 900;
+}
+.burbuja {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,.98) 0 12%, rgba(255,255,255,0) 24%),
+        radial-gradient(circle at 68% 74%, rgba(255,255,255,.55) 0 6%, rgba(255,255,255,0) 12%),
+        radial-gradient(circle at 50% 50%, rgba(190,226,240,.18) 0 52%, rgba(43,143,191,.42) 80%, rgba(255,255,255,.85) 95%, rgba(255,255,255,0) 100%);
+    box-shadow: inset 0 0 0 1px rgba(43,143,191,.35), 0 0 6px rgba(43,143,191,.25);
+    will-change: transform, opacity;
+}
+
+/* ===========================================================
+   INTRO EN VIDEO + TRANSICIÓN DE LUZ
+   =========================================================== */
+html.intro-activa,
+html.intro-activa body { overflow: hidden; height: 100%; }
+
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #04182B;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 1.5s ease;
+}
+.intro:focus { outline: none; }
+
+/* Fondo desenfocado (se ve en pantallas anchas, a los lados del video vertical) */
+.intro-fondo {
+    position: absolute;
+    inset: -40px;
+    background: url('intro-poster.jpg') center / cover no-repeat;
+    filter: blur(28px) brightness(.55) saturate(1.2);
+}
+
+.intro-clip {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: 50% 20%;
+    transition: transform 1.9s cubic-bezier(.5,0,.2,1), filter 1.9s ease-in;
+}
+@media (min-aspect-ratio: 4/5) {
+    .intro-clip { object-fit: contain; }
+}
+
+/* Velo para que el texto se lea sobre el póster */
+.intro-velo {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 45%, rgba(4,24,43,.15) 0%, rgba(4,24,43,.55) 70%),
+        linear-gradient(180deg, rgba(4,24,43,.35) 0%, rgba(4,24,43,.1) 40%, rgba(4,24,43,.7) 100%);
+    transition: opacity 1s ease;
+}
+
+/* Portada antes del toque */
+.intro-portada {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem calc(2rem + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    color: #fff;
+    transition: opacity .8s ease, transform 1s ease;
+}
+.intro-concha {
+    width: 64px;
+    height: 50px;
+    background: url('concha-blanca.png') center / contain no-repeat;
+    filter: drop-shadow(0 0 10px rgba(190,226,240,.7));
+    margin-bottom: .9rem;
+    animation: introFlotar 4s ease-in-out infinite;
+}
+.intro-fecha {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: .32em;
+    font-size: .85rem;
+    color: #DCEFF6;
+    margin: 0;
+}
+.intro-nombre {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: clamp(4rem, 17vw, 6.5rem);
+    line-height: 1.05;
+    margin: .3rem 0 .1rem;
+    color: #fff;
+    text-shadow: 0 0 18px rgba(140,203,227,.75), 0 2px 12px rgba(4,24,43,.6);
+}
+.intro-xv {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: .12em;
+    color: #E6F0F7;
+    margin: 0 0 2.6rem;
+}
+.intro-toque {
+    position: relative;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 1rem;
+}
+.intro-dedo {
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff 0 20%, #DCEFF6 45%, #8CCBE3 100%);
+    box-shadow: 0 0 16px rgba(220,239,246,.9);
+    animation: introLatido 1.8s ease-in-out infinite;
+}
+.intro-onda {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(220,239,246,.85);
+    animation: introOnda 2.2s ease-out infinite;
+}
+.intro-onda--2 { animation-delay: 1.1s; }
+.intro-instruccion {
+    font-family: 'Playfair Display', serif;
+    font-size: .8rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #DCEFF6;
+    margin: 0;
+    animation: introParpadeo 2.4s ease-in-out infinite;
+}
+
+/* Botón saltar (aparece cuando el video ya empezó) */
+.intro-saltar {
+    position: absolute;
+    right: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    z-index: 3;
+    padding: .45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(220,239,246,.6);
+    background: rgba(4,24,43,.35);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: #F1F8FB;
+    font-family: 'Playfair Display', serif;
+    font-size: .8rem;
+    letter-spacing: .08em;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s ease 2s;
+}
+
+/* Al tocar: se va la portada y corre el video */
+.intro.reproduciendo { cursor: default; }
+.intro.reproduciendo .intro-portada { opacity: 0; transform: scale(1.06); pointer-events: none; }
+.intro.reproduciendo .intro-velo { opacity: 0; }
+.intro.reproduciendo .intro-saltar { opacity: 1; pointer-events: auto; }
+
+/* Destello de luz que baja desde la superficie */
+.intro-luz {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    background:
+        radial-gradient(ellipse 70% 55% at 50% 0%, #ffffff 0%, rgba(241,248,251,.95) 25%, rgba(190,226,240,.85) 50%, rgba(140,203,227,.45) 75%, rgba(43,143,191,0) 100%);
+    transform: scale(.7);
+    transform-origin: 50% 0%;
+    transition: opacity 1.5s ease-in, transform 1.8s cubic-bezier(.5,0,.2,1);
+}
+.intro-luz::before {
+    /* rayos de sol */
+    content: "";
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    top: -20%;
+    height: 140%;
+    background: repeating-conic-gradient(from 160deg at 50% 0%, rgba(255,255,255,.55) 0deg 3deg, rgba(255,255,255,0) 3deg 9deg);
+    -webkit-mask-image: radial-gradient(ellipse 60% 80% at 50% 0%, #000 0%, transparent 75%);
+    mask-image: radial-gradient(ellipse 60% 80% at 50% 0%, #000 0%, transparent 75%);
+    animation: introRayos 6s linear infinite;
+}
+.intro-burbujas {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.intro.saliendo .intro-clip { transform: scale(1.18); filter: brightness(1.9) blur(5px) saturate(.8); }
+.intro.saliendo .intro-luz { opacity: 1; transform: scale(2.6); }
+.intro.saliendo .intro-saltar { opacity: 0; transition-delay: 0s; pointer-events: none; }
+
+/* La luz se disuelve y aparece la invitación */
+.intro.revelando { opacity: 0; pointer-events: none; }
+
+@keyframes introFlotar { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes introLatido { 0%,100% { transform: scale(.85); } 50% { transform: scale(1); } }
+@keyframes introOnda { 0% { transform: scale(.45); opacity: .95; } 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes introParpadeo { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes introRayos { from { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } to { transform: rotate(-4deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-concha, .intro-dedo, .intro-onda, .intro-instruccion, .intro-luz::before { animation: none; }
+}
