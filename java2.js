@@ -444,8 +444,35 @@ function openGiftLink() {
     window.open('https://invitacionesdigital-04.github.io/Numerodecuenta/', '_blank');
 }
 
+// Confirmación por WhatsApp
+const WHATSAPP_CONFIRMACION = '18296418720'; // +1 (829) 641-8720
+
+function unirNombres(lista) {
+    if (lista.length === 1) return lista[0];
+    return lista.slice(0, -1).join(', ') + ' y ' + lista[lista.length - 1];
+}
+
+function mensajeConfirmacion() {
+    const params = new URLSearchParams(window.location.search);
+    const invitados = (params.get('invitados') || '').split(',').map(n => n.trim()).filter(Boolean);
+    const familia = (params.get('familia') || '').trim();
+    const cierre = ' ¡Muchas gracias por la invitación! 💙';
+
+    if (invitados.length > 1) {
+        return `¡Hola! Somos ${unirNombres(invitados)} y confirmamos nuestra asistencia (${invitados.length} personas) a los XV años de Amanda.` + cierre;
+    }
+    if (invitados.length === 1) {
+        return `¡Hola! Soy ${invitados[0]} y confirmo mi asistencia a los XV años de Amanda.` + cierre;
+    }
+    if (familia) {
+        return `¡Hola! Somos la Familia ${familia} y confirmamos nuestra asistencia a los XV años de Amanda.` + cierre;
+    }
+    return '¡Hola! Confirmo mi asistencia a los XV años de Amanda.' + cierre;
+}
+
 function confirmAttendance() {
-    window.open('https://docs.google.com/forms/d/e/1FAIpQLScE--FHaXBwnoUl_yjudMz-rZywKmJ2TRczQNtEuV9yKi-CcQ/viewform?usp=header', '_blank');
+    const url = `https://wa.me/${WHATSAPP_CONFIRMACION}?text=${encodeURIComponent(mensajeConfirmacion())}`;
+    window.open(url, '_blank');
 }
 
 // Sistema de Toast
