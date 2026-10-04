@@ -3639,3 +3639,54 @@ html.intro-activa body { overflow: hidden; height: 100%; }
 @media (prefers-reduced-motion: reduce) {
     .intro-concha, .intro-dedo, .intro-onda, .intro-instruccion, .intro-luz::before { animation: none; }
 }
+
+/* ===========================================================
+   CÓDIGO DE VESTIMENTA — imagen flotante (como la notificación,
+   pero un poco más grande)
+   =========================================================== */
+.vestimenta-flotante {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    z-index: 1001;
+    width: min(400px, calc(100vw - 2rem));
+    padding: 8px;
+    background: #fff;
+    border: 1px solid #A3BDD1;
+    border-radius: 14px;
+    box-shadow: 0 14px 40px rgba(14, 58, 92, .28);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(110%);
+    transition: transform .35s ease, opacity .35s ease, visibility 0s linear .35s;
+}
+.vestimenta-flotante.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition: transform .35s ease, opacity .35s ease, visibility 0s;
+}
+.vestimenta-flotante img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 9px;
+}
+.vestimenta-cerrar {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #A3BDD1;
+    background: #0E3A5C;
+    color: #fff;
+    font-size: 20px;
+    line-height: 28px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(14, 58, 92, .3);
+}
+@media (max-height: 600px) {
+    .vestimenta-flotante { top: 1rem; width: min(330px, calc(100vw - 2rem)); }
+}

@@ -415,7 +415,25 @@ function initializeParallax() {
 // Funciones de los botones
 
 function showDressCode() {
-    showToast("Código de Vestimenta", "Formal. Nota: por favor no asistir con los siguientes colores: vino tinto, malva, beige y blanco 👗");
+    const card = document.getElementById('dressCodeCard');
+    if (!card) return;
+    card.classList.add('show');
+    card.setAttribute('aria-hidden', 'false');
+    // Cerrar al tocar fuera de la imagen (se activa un instante después para no cerrarla con el mismo toque)
+    setTimeout(() => document.addEventListener('click', cerrarVestimentaFuera, true), 50);
+}
+
+function closeDressCode() {
+    const card = document.getElementById('dressCodeCard');
+    if (!card) return;
+    card.classList.remove('show');
+    card.setAttribute('aria-hidden', 'true');
+    document.removeEventListener('click', cerrarVestimentaFuera, true);
+}
+
+function cerrarVestimentaFuera(e) {
+    const card = document.getElementById('dressCodeCard');
+    if (card && !card.contains(e.target)) closeDressCode();
 }
 
 function sharePhotos() {

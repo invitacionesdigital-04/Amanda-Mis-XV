@@ -12,7 +12,7 @@
     <link rel="preload" as="image" href="intro-poster.jpg">
     <link rel="preload" as="image" href="foto0.jpg" imagesizes="100vw">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ccs-2.css?v=marprofundo-20261002-07">
+    <link rel="stylesheet" href="ccs-2.css?v=marprofundo-20261002-08">
 </head>
 <body>
     <!-- Intro en video: el primer toque abre la invitación y activa la música -->
@@ -252,7 +252,7 @@
                                 <img class="icono-invitacion icono-corbatin" src="icono-corbatin.png" alt="" loading="lazy">
                             </div>
                             <h3 class="event-title">Código de Vestimenta</h3>
-                            <p>Formal. Por favor evita asistir con estos colores: vino tinto, malva, beige y blanco.</p>
+                            <p>Semi-formal, en tonos azul, lila, crema, blanco, plateado y rosado. Inspiración: debajo del mar.</p>
                             <button class="btn-wedding" onclick="showDressCode()">Ver más</button>
                         </div>
                         <div class="party-card">
@@ -303,6 +303,12 @@
         <div id="toastContent"></div>
     </div>
 
+    <!-- Código de vestimenta (imagen flotante) -->
+    <div id="dressCodeCard" class="vestimenta-flotante" role="dialog" aria-label="Código de vestimenta" aria-hidden="true">
+        <button type="button" class="vestimenta-cerrar" onclick="closeDressCode()" aria-label="Cerrar">×</button>
+        <img src="vestimenta.jpg" alt="Vestimenta semi-formal en tonos azul, lila, crema, blanco, plateado y rosado. Inspiración: debajo del mar." loading="lazy">
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -311,6 +317,6 @@
         </div>
     </footer>
 
-    <script src="java2.js?v=marprofundo-20261002-07"></script>
+    <script src="java2.js?v=marprofundo-20261002-08"></script>
 </body>
 </html>
